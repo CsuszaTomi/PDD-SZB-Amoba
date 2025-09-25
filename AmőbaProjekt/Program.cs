@@ -55,15 +55,70 @@ namespace AmőbaProjekt
         }
         private static void Tábla(int sorok, int oszlopok, string[,] tabla)
         {
+            int size = 10;
             //Amőba tábla kirajzolása
-            for (int i = 0; i < sorok; i++)
+            Console.Write("┌");
+            for (int i = 1; i < size; i++)
             {
-                for (int j = 0; j < oszlopok; j++)
+                Console.Write("───");
+                if (i != 9)
                 {
-                    Console.Write(tabla[i, j] + " ");
+                    Console.Write("┬");
                 }
-                Console.WriteLine();
             }
+            Console.Write("┐\n");
+
+            for (int i = 1; i < size; i++)
+            {
+
+                Console.Write("│");
+                for (int i2 = 1; i2 < size; i2++)
+                {
+                    Console.Write($" {tabla[i - 1, i2 - 1]} ");
+                    if (i2 != 9)
+                    {
+                        Console.Write("│");
+                    }
+                }
+                Console.Write("│\n");
+
+                Console.Write("├");
+                for (int i1 = 1; i1 < size; i1++)
+                {
+                    Console.Write("───");
+                    if (i1 != 9)
+                    {
+                        Console.Write("┼");
+                    }
+                }
+                Console.Write("┤\n");
+
+                if (i == 9)
+                {
+                    Console.Write("│");
+                    for (int i2 = 1; i2 < size; i2++)
+                    {
+                        Console.Write($" {tabla[i - 1, i2 - 1]} ");
+                        if (i2 != 9)
+                        {
+                            Console.Write("│");
+                        }
+                    }
+                    Console.Write("│\n");
+                }
+
+            }
+
+            Console.Write("└");
+            for (int i = 1; i < size; i++)
+            {
+                Console.Write("───");
+                if (i != 9)
+                {
+                    Console.Write("┴");
+                }
+            }
+            Console.Write("┘\n");
         }
     }
 }

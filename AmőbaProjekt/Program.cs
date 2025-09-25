@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -20,6 +21,8 @@ namespace AmőbaProjekt
             int lepesek = 0;
             bool jatekos1fordulo = true;
             string mostanijatekos = "1. Játékos";
+            int currentPoint = 0;
+            bool jatek = false;
             for (int i = 0; i < sorok; i++)
             {
                 for (int j = 0; j < oszlopok; j++)
@@ -27,32 +30,114 @@ namespace AmőbaProjekt
                     tabla[i, j] = ".";
                 }
             }
-            Tábla(sorok, oszlopok, tabla);
             do
             {
-                //Játék kezdése
-                Console.WriteLine($"{mostanijatekos} következik");
-                Console.WriteLine("Add meg a sor számát(1-10)");
-                int sor = Convert.ToInt32(Console.ReadLine());
-                Console.WriteLine("Add meg az oszlop számát(1-10)");
-                int oszlop = Convert.ToInt32(Console.ReadLine());
-                if (jatekos1fordulo)
+                bool selected = false;
+                do
                 {
-                    tabla[sor - 1, oszlop - 1] = jatekos1;
-                    hasznaltmezok[sor - 1, oszlop - 1] = jatekos1;
-                    jatekos1fordulo = false;
-                    mostanijatekos = "2. Játékos";
-                }
-                else
+                    Menü(currentPoint);
+                    switch (Console.ReadKey().Key)
+                    {
+                        case ConsoleKey.Enter:
+                            selected = true;
+                            break;
+
+                        case ConsoleKey.UpArrow:
+                            if (currentPoint > 0)
+                                currentPoint--;
+                            break;
+                        case ConsoleKey.DownArrow:
+                            if (currentPoint < 2)
+                                currentPoint++;
+                            break;
+
+                        default:
+                            Console.Beep();
+                            break;
+                    }
+                } while (!selected);
+                switch (currentPoint)
                 {
-                    tabla[sor - 1, oszlop - 1] = jatekos2;
-                    hasznaltmezok[sor - 1, oszlop - 1] = jatekos2;
-                    jatekos1fordulo = true;
-                    mostanijatekos = "1. Játékos";
+                    case 0:     //Játék kezdése
+                        Console.Clear();
+                        currentPoint = 2;
+                        jatek = true;
+                        break;
+                    case 1: //szín beállítások menü
+                        break;
+                    case 2:     //kilepes
+                        Console.Clear();
+                        Console.Write("Biztosan ki szeretnél lépni?(i/n): ");
+                        if (Console.ReadKey().Key != ConsoleKey.I)
+                            currentPoint = 0;
+                        break;
                 }
-                Tábla(sorok, oszlopok, tabla);
-            } while (true);
+            } while (currentPoint != 2);
+
+            if(jatek)
+            {
+                do
+                {
+                    //Játék kezdése
+                    Tábla(sorok, oszlopok, tabla);
+                    Console.WriteLine($"{mostanijatekos} következik");
+                    Console.WriteLine("Add meg a sor számát(1-10)");
+                    int sor = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine("Add meg az oszlop számát(1-10)");
+                    int oszlop = Convert.ToInt32(Console.ReadLine());
+                    if (jatekos1fordulo)
+                    {
+                        tabla[sor - 1, oszlop - 1] = jatekos1;
+                        hasznaltmezok[sor - 1, oszlop - 1] = jatekos1;
+                        jatekos1fordulo = false;
+                        mostanijatekos = "2. Játékos";
+                    }
+                    else
+                    {
+                        tabla[sor - 1, oszlop - 1] = jatekos2;
+                        hasznaltmezok[sor - 1, oszlop - 1] = jatekos2;
+                        jatekos1fordulo = true;
+                        mostanijatekos = "1. Játékos";
+                    }
+                    Tábla(sorok, oszlopok, tabla);
+                } while (true);
+            }
         }
+
+        private static void Menü(int cPoint)
+        {
+            Console.Clear();
+            Console.WriteLine("*** AMŐBA ***");
+            if (cPoint == 0)
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.White;
+            }
+            Console.WriteLine("Start");
+            if (cPoint == 1)
+            {
+                Console.ForegroundColor = ConsoleColor.Blue;
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.White;
+            }
+            Console.WriteLine("Háttérszín állítás");
+            if (cPoint == 2)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.White;
+            }
+            Console.WriteLine("Kilépés");
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+
         private static void Tábla(int sorok, int oszlopok, string[,] tabla)
         {
             //Amőba tábla kirajzolása

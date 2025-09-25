@@ -326,6 +326,7 @@ namespace AmőbaProjekt
                 }
             }
             Console.Write("┘\n");
+            //semmi
         }
     }
 }

@@ -10,11 +10,13 @@ namespace AmőbaProjekt
     {
         static void Main(string[] args)
         {
-            string[,] tabla = new string[10, 10];
+            int sorok = 10;
+            int oszlopok = 10;
+            string[,] tabla = new string[sorok, oszlopok];
             //Amőba tábla kirajzolása
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < sorok; i++)
             {
-                for (int j = 0; j < 10; j++)
+                for (int j = 0; j < oszlopok; j++)
                 {
                     tabla[i, j] = ".";
                     Console.Write(tabla[i, j] + " ");

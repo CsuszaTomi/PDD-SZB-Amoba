@@ -23,8 +23,8 @@ namespace AmobaProjekt
             {
                 for (int j = 0; j < oszlopok; j++)
                 {
-                    tabla[i, j] = ".";
-                    hasznaltmezok[i, j] = ".";
+                    tabla[i, j] = " ";
+                    hasznaltmezok[i, j] = " ";
                 }
             }
 
@@ -132,7 +132,6 @@ namespace AmobaProjekt
         /// Sor szám ellenőrzése hogy nem betü-e és 1-10 közötti szám-e
         /// </summary>
         /// <returns></returns>
-
         private static int SorEllenorzes()
         {
             int sor;

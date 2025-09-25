@@ -63,7 +63,7 @@ namespace AmőbaProjekt
                         currentPoint = 2;
                         jatek = true;
                         break;
-                    case 1: //szín beállítások menü
+                    case 1: //beállítások menü
                         break;
                     case 2:     //kilepes
                         Console.Clear();
@@ -73,18 +73,43 @@ namespace AmőbaProjekt
                         break;
                 }
             } while (currentPoint != 2);
-
             if(jatek)
             {
                 do
                 {
+                    Console.Clear();
                     //Játék kezdése
                     Tábla(sorok, oszlopok, tabla);
-                    Console.WriteLine($"{mostanijatekos} következik");
+                    Console.WriteLine($"Az {mostanijatekos} következik");
                     Console.WriteLine("Add meg a sor számát(1-10)");
                     int sor = Convert.ToInt32(Console.ReadLine());
                     Console.WriteLine("Add meg az oszlop számát(1-10)");
                     int oszlop = Convert.ToInt32(Console.ReadLine());
+                    while (!(sor > 0 && sor < 11 && oszlop > 0 && oszlop < 11))
+                    {
+                        Console.WriteLine("Nem adot meg 1-10-ig terjedő számot");
+                        Console.WriteLine("Add meg a sor számát(1-10)");
+                        sor = Convert.ToInt32(Console.ReadLine());
+                        Console.WriteLine("Add meg az oszlop számát(1-10)");
+                        oszlop = Convert.ToInt32(Console.ReadLine());
+                    }
+                    //elenőrzés hogy már lépett e oda
+                    while(hasznaltmezok[sor - 1, oszlop - 1] == jatekos1 || (hasznaltmezok[sor - 1, oszlop - 1] == jatekos2))
+                    {
+                        Console.WriteLine("Erre a mezőre már lépett valaki");
+                        Console.WriteLine("Add meg a sor számát(1-10)");
+                        sor = Convert.ToInt32(Console.ReadLine());
+                        Console.WriteLine("Add meg az oszlop számát(1-10)");
+                        oszlop = Convert.ToInt32(Console.ReadLine());
+                        while (!(sor > 0 && sor < 11 && oszlop > 0 && oszlop < 11))
+                        {
+                            Console.WriteLine("Nem adot meg 1-10-ig terjedő számot");
+                            Console.WriteLine("Add meg a sor számát(1-10)");
+                            sor = Convert.ToInt32(Console.ReadLine());
+                            Console.WriteLine("Add meg az oszlop számát(1-10)");
+                            oszlop = Convert.ToInt32(Console.ReadLine());
+                        }
+                    }
                     if (jatekos1fordulo)
                     {
                         tabla[sor - 1, oszlop - 1] = jatekos1;
@@ -100,14 +125,16 @@ namespace AmőbaProjekt
                         mostanijatekos = "1. Játékos";
                     }
                     Tábla(sorok, oszlopok, tabla);
-                } while (true);
+                } while (jatek);
             }
         }
 
         private static void Menü(int cPoint)
         {
             Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("*** AMŐBA ***");
+            Console.ForegroundColor = ConsoleColor.White;
             if (cPoint == 0)
             {
                 Console.ForegroundColor = ConsoleColor.Green;
@@ -125,7 +152,7 @@ namespace AmőbaProjekt
             {
                 Console.ForegroundColor = ConsoleColor.White;
             }
-            Console.WriteLine("Háttérszín állítás");
+            Console.WriteLine("Beállítások");
             if (cPoint == 2)
             {
                 Console.ForegroundColor = ConsoleColor.Red;

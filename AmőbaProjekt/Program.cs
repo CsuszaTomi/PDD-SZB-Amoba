@@ -240,19 +240,19 @@ namespace AmőbaProjekt
             }
             Console.Write("┐\n");
 
-            for (int sor = 1; sor < size; sor++)
+            for (int sor = 0; sor < size; sor++)
             {
 
                 Console.Write("│");
                 for (int oszlop = 1; oszlop < size; oszlop++)
                 {
-                    if (tabla[sor - 1, oszlop - 1] == "X")
+                    if (tabla[sor , oszlop] == "X")
                         Console.ForegroundColor = ConsoleColor.Blue;
-                    else if (tabla[sor - 1, oszlop - 1] == "O")
+                    else if (tabla[sor, oszlop ] == "O")
                         Console.ForegroundColor = ConsoleColor.Red;
-                    Console.Write($" {tabla[sor - 1, oszlop - 1]} ");
+                    Console.Write($" {tabla[sor, oszlop]} ");
                     Console.ForegroundColor = ConsoleColor.White;
-                    if (oszlop != 9)
+                    if (oszlop != 10)
                     {
                         Console.Write("│");
                     }
@@ -260,10 +260,10 @@ namespace AmőbaProjekt
                 Console.Write("│\n");
 
                 Console.Write("├");
-                for (int elvalaszto = 1; elvalaszto < size; elvalaszto++)
+                for (int elvalaszto = 0; elvalaszto < size; elvalaszto++)
                 {
                     Console.Write("───");
-                    if (elvalaszto != 9)
+                    if (elvalaszto != 10)
                     {
                         Console.Write("┼");
                     }
@@ -273,15 +273,17 @@ namespace AmőbaProjekt
                 if (sor == 9)
                 {
                     Console.Write("│");
-                    for (int oszlop = 1; oszlop < size; oszlop++)
+                    for (int oszlop = 0; oszlop < size; oszlop++)
                     {
-                        if (tabla[sor - 1, oszlop - 1] == "X")
+                        if (tabla[sor, oszlop] == "X")
                             Console.ForegroundColor = ConsoleColor.Blue;
-                        else if (tabla[sor - 1, oszlop - 1] == "O")
+                        else if (tabla[sor, oszlop] == "O")
                             Console.ForegroundColor = ConsoleColor.Red;
-                        Console.Write($" {tabla[sor - 1, oszlop - 1]} ");
+
+                        Console.Write($" {tabla[sor, oszlop]} ");
+
                         Console.ForegroundColor = ConsoleColor.White;
-                        if (oszlop != 9)
+                        if (oszlop != 10)
                         {
                             Console.Write("│"); 
 
@@ -293,10 +295,10 @@ namespace AmőbaProjekt
             }
 
             Console.Write("└");
-            for (int i = 1; i < size; i++)
+            for (int i = 0; i < size; i++)
             {
                 Console.Write("───");
-                if (i != 9)
+                if (i != 10)
                 {
                     Console.Write("┴");
                 }

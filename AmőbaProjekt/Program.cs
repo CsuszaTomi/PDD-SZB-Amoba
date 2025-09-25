@@ -23,6 +23,7 @@ namespace AmőbaProjekt
                 }
                 Console.WriteLine();
             }
+            //valami dolog
         }
     }
 }

@@ -75,39 +75,63 @@ namespace AmőbaProjekt
             } while (currentPoint != 2);
             if(jatek)
             {
+                int sor = 0;
+                int oszlop = 0;
                 do
                 {
                     Console.Clear();
                     //Játék kezdése
                     Tábla(sorok, oszlopok, tabla);
+                    Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine($"Az {mostanijatekos} következik");
-                    Console.WriteLine("Add meg a sor számát(1-10)");
-                    int sor = Convert.ToInt32(Console.ReadLine());
-                    Console.WriteLine("Add meg az oszlop számát(1-10)");
-                    int oszlop = Convert.ToInt32(Console.ReadLine());
-                    while (!(sor > 0 && sor < 11 && oszlop > 0 && oszlop < 11))
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.Write("Add meg a sor számát(1-10): ");
+                    sor = SorEllenorzes();
+                    Console.Write("Add meg az oszlop számát(1-10): ");
+                    oszlop = Oszlopellenorzes();
+                    while (!(sor > 0 && sor < 11))
                     {
-                        Console.WriteLine("Nem adot meg 1-10-ig terjedő számot");
-                        Console.WriteLine("Add meg a sor számát(1-10)");
-                        sor = Convert.ToInt32(Console.ReadLine());
-                        Console.WriteLine("Add meg az oszlop számát(1-10)");
-                        oszlop = Convert.ToInt32(Console.ReadLine());
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Nem adot meg 1-10-ig terjedő számot!");
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.Write("Add meg a sor számát(1-10): ");
+                        sor = SorEllenorzes();
+
+                    }
+                    while (oszlop > 0 && oszlop < 11)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Nem adot meg 1-10-ig terjedő számot!");
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.Write("Add meg az oszlop számát(1-10): ");
+                        oszlop = Oszlopellenorzes();
                     }
                     //elenőrzés hogy már lépett e oda
-                    while(hasznaltmezok[sor - 1, oszlop - 1] == jatekos1 || (hasznaltmezok[sor - 1, oszlop - 1] == jatekos2))
+                    while (hasznaltmezok[sor - 1, oszlop - 1] == jatekos1 || (hasznaltmezok[sor - 1, oszlop - 1] == jatekos2))
                     {
-                        Console.WriteLine("Erre a mezőre már lépett valaki");
-                        Console.WriteLine("Add meg a sor számát(1-10)");
-                        sor = Convert.ToInt32(Console.ReadLine());
-                        Console.WriteLine("Add meg az oszlop számát(1-10)");
-                        oszlop = Convert.ToInt32(Console.ReadLine());
-                        while (!(sor > 0 && sor < 11 && oszlop > 0 && oszlop < 11))
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Erre a mezőre már lépett valaki!");
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.Write("Add meg a sor számát(1-10): ");
+                        sor = SorEllenorzes();
+                        Console.Write("Add meg az oszlop számát(1-10): ");
+                        oszlop = Oszlopellenorzes();
+                        while (!(sor > 0 && sor < 11 ))
                         {
-                            Console.WriteLine("Nem adot meg 1-10-ig terjedő számot");
-                            Console.WriteLine("Add meg a sor számát(1-10)");
-                            sor = Convert.ToInt32(Console.ReadLine());
-                            Console.WriteLine("Add meg az oszlop számát(1-10)");
-                            oszlop = Convert.ToInt32(Console.ReadLine());
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("Nem adot meg 1-10-ig terjedő számot!");
+                            Console.ForegroundColor = ConsoleColor.White;
+                            Console.Write("Add meg a sor számát(1-10): ");
+                            sor = SorEllenorzes();
+
+                        }
+                        while (oszlop > 0 && oszlop < 11) 
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("Nem adot meg 1-10-ig terjedő számot!");
+                            Console.ForegroundColor = ConsoleColor.White;
+                            Console.Write("Add meg az oszlop számát(1-10): ");
+                            oszlop = Oszlopellenorzes();
                         }
                     }
                     if (jatekos1fordulo)
@@ -129,9 +153,38 @@ namespace AmőbaProjekt
             }
         }
 
+        private static int Oszlopellenorzes()
+        {
+            int oszlop;
+            while (!int.TryParse(Console.ReadLine(), out oszlop))
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Nem számot adott meg!");
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.Write("Add meg az oszlop számát(1-10): ");
+            }
+
+            return oszlop;
+        }
+
+        private static int SorEllenorzes()
+        {
+            int sor;
+            while (!int.TryParse(Console.ReadLine(), out sor))
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Nem számot adott meg!");
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.Write("Add meg a sor számát(1-10): ");
+            }
+
+            return sor;
+        }
+
         private static void Menü(int cPoint)
         {
             Console.Clear();
+            Console.Title = "Amőba";
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("*** AMŐBA ***");
             Console.ForegroundColor = ConsoleColor.White;

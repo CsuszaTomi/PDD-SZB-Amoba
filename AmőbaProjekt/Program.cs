@@ -128,6 +128,11 @@ namespace AmobaProjekt
             }
         }
 
+        /// <summary>
+        /// Sor szám ellenőrzése hogy nem betü-e és 1-10 közötti szám-e
+        /// </summary>
+        /// <returns></returns>
+
         private static int SorEllenorzes()
         {
             int sor;
@@ -153,6 +158,10 @@ namespace AmobaProjekt
             }
         }
 
+        /// <summary>
+        /// Oszlop szám ellenőrzése hogy nem betü-e és 1-10 közötti szám-e
+        /// </summary>
+        /// <returns></returns>
         private static int Oszlopellenorzes()
         {
             int oszlop;
@@ -178,6 +187,10 @@ namespace AmobaProjekt
             }
         }
 
+        /// <summary>
+        /// A menü kirajzolása,lehetőségek kiirása
+        /// </summary>
+        /// <returns></returns>
         private static void Menu(int cPoint)
         {
             Console.Clear();

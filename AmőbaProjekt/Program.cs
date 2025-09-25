@@ -18,7 +18,7 @@ namespace AmőbaProjekt
             string jatekos1 = "X";
             string jatekos2 = "O";
             string[,] hasznaltmezok = new string[sorok, oszlopok];
-            int lepesek = 0;
+            int lepesek = 100;
             bool jatekos1fordulo = true;
             string mostanijatekos = "1. Játékos";
             int currentPoint = 0;
@@ -99,23 +99,6 @@ namespace AmőbaProjekt
                         sor = SorEllenorzes();
                         Console.Write("Add meg az oszlop számát(1-10): ");
                         oszlop = Oszlopellenorzes();
-                        while (!(sor > 0 && sor < 11 ))
-                        {
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            Console.WriteLine("Nem adot meg 1-10-ig terjedő számot!");
-                            Console.ForegroundColor = ConsoleColor.White;
-                            Console.Write("Add meg a sor számát(1-10): ");
-                            sor = SorEllenorzes();
-
-                        }
-                        while (oszlop > 0 && oszlop < 11) 
-                        {
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            Console.WriteLine("Nem adot meg 1-10-ig terjedő számot!");
-                            Console.ForegroundColor = ConsoleColor.White;
-                            Console.Write("Add meg az oszlop számát(1-10): ");
-                            oszlop = Oszlopellenorzes();
-                        }
                     }
                     if (jatekos1fordulo)
                     {

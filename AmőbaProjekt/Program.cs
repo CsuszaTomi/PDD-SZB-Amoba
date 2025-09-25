@@ -23,6 +23,7 @@ namespace AmőbaProjekt
             string mostanijatekos = "1. Játékos";
             int currentPoint = 0;
             bool jatek = false;
+            string hatterszin = "Black";
             for (int i = 0; i < sorok; i++)
             {
                 for (int j = 0; j < oszlopok; j++)
@@ -81,7 +82,7 @@ namespace AmőbaProjekt
                 {
                     Console.Clear();
                     //Játék kezdése
-                    Tábla(sorok, oszlopok, tabla);
+                    Tábla(sorok, oszlopok, tabla, hatterszin);
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine($"Az {mostanijatekos} következik");
                     Console.ForegroundColor = ConsoleColor.White;
@@ -114,7 +115,7 @@ namespace AmőbaProjekt
                         jatekos1fordulo = true;
                         mostanijatekos = "1. Játékos";
                     }
-                    Tábla(sorok, oszlopok, tabla);
+                    Tábla(sorok, oszlopok, tabla, hatterszin);
                 } while (jatek);
             }
         }
@@ -211,7 +212,7 @@ namespace AmőbaProjekt
             Console.ForegroundColor = ConsoleColor.White;
         }
 
-        private static void Tábla(int sorok, int oszlopok, string[,] tabla)
+        private static void Tábla(int sorok, int oszlopok, string[,] tabla,string hatterszin)
         {
             int size = 10;
             //Amőba tábla kirajzolása
@@ -232,8 +233,26 @@ namespace AmőbaProjekt
                 Console.Write("│");
                 for (int oszlop = 1; oszlop < size; oszlop++)
                 {
-                    Console.Write($" {tabla[sor -1, oszlop-1]} ");
-                    if (oszlop != 9)
+                    if (tabla[i - 1, i2 - 1] == "X")
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                    else if (tabla[i - 1, i2 - 1] == "O")
+                        Console.ForegroundColor = ConsoleColor.Red;
+                    else if (tabla[i - 1, i2 - 1] == ".")
+                        if (hatterszin == "Black")
+                            Console.ForegroundColor = ConsoleColor.Black;
+                        else if (hatterszin == "White")
+                            Console.ForegroundColor = ConsoleColor.White;
+                        else if (hatterszin == "Red")
+                            Console.ForegroundColor = ConsoleColor.Red;
+                        else if (hatterszin == "Blue")
+                            Console.ForegroundColor = ConsoleColor.Blue;
+                        else if (hatterszin == "Green")
+                            Console.ForegroundColor = ConsoleColor.Green;
+                        else
+                            Console.ForegroundColor = ConsoleColor.Black;
+                    Console.Write($" {tabla[i - 1, i2 - 1]} ");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    if (i2 != 9)
                     {
                         Console.Write("│");
                     }
@@ -256,10 +275,11 @@ namespace AmőbaProjekt
                     Console.Write("│");
                     for (int i2 = 1; i2 < size; i2++)
                     {
-                        Console.Write($" {tabla[sor-1, i2-1]} ");
+                        Console.Write($" {tabla[i - 1, i2 - 1]} ");
                         if (i2 != 9)
                         {
                             Console.Write("│");
+
                         }
                     }
                     Console.Write("│\n");

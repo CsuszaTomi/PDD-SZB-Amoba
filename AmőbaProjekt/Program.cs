@@ -226,14 +226,14 @@ namespace AmőbaProjekt
             }
             Console.Write("┐\n");
 
-            for (int i = 1; i < size; i++)
+            for (int sor = 1; sor < size; sor++)
             {
 
                 Console.Write("│");
-                for (int i2 = 1; i2 < size; i2++)
+                for (int oszlop = 1; oszlop < size; oszlop++)
                 {
-                    Console.Write($" {tabla[i - 1, i2 - 1]} ");
-                    if (i2 != 9)
+                    Console.Write($" {tabla[sor -1, oszlop-1]} ");
+                    if (oszlop != 9)
                     {
                         Console.Write("│");
                     }
@@ -241,22 +241,22 @@ namespace AmőbaProjekt
                 Console.Write("│\n");
 
                 Console.Write("├");
-                for (int i1 = 1; i1 < size; i1++)
+                for (int elvalaszto = 1; elvalaszto < size; elvalaszto++)
                 {
                     Console.Write("───");
-                    if (i1 != 9)
+                    if (elvalaszto != 9)
                     {
                         Console.Write("┼");
                     }
                 }
                 Console.Write("┤\n");
 
-                if (i == 9)
+                if (sor == 9)
                 {
                     Console.Write("│");
                     for (int i2 = 1; i2 < size; i2++)
                     {
-                        Console.Write($" {tabla[i - 1, i2 - 1]} ");
+                        Console.Write($" {tabla[sor-1, i2-1]} ");
                         if (i2 != 9)
                         {
                             Console.Write("│");

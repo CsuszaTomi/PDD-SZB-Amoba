@@ -89,23 +89,6 @@ namespace AmőbaProjekt
                     sor = SorEllenorzes();
                     Console.Write("Add meg az oszlop számát(1-10): ");
                     oszlop = Oszlopellenorzes();
-                    while (!(sor > 0 && sor < 11))
-                    {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("Nem adot meg 1-10-ig terjedő számot!");
-                        Console.ForegroundColor = ConsoleColor.White;
-                        Console.Write("Add meg a sor számát(1-10): ");
-                        sor = SorEllenorzes();
-
-                    }
-                    while (oszlop > 0 && oszlop < 11)
-                    {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("Nem adot meg 1-10-ig terjedő számot!");
-                        Console.ForegroundColor = ConsoleColor.White;
-                        Console.Write("Add meg az oszlop számát(1-10): ");
-                        oszlop = Oszlopellenorzes();
-                    }
                     //elenőrzés hogy már lépett e oda
                     while (hasznaltmezok[sor - 1, oszlop - 1] == jatekos1 || (hasznaltmezok[sor - 1, oszlop - 1] == jatekos2))
                     {
@@ -153,33 +136,60 @@ namespace AmőbaProjekt
             }
         }
 
-        private static int Oszlopellenorzes()
-        {
-            int oszlop;
-            while (!int.TryParse(Console.ReadLine(), out oszlop))
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Nem számot adott meg!");
-                Console.ForegroundColor = ConsoleColor.White;
-                Console.Write("Add meg az oszlop számát(1-10): ");
-            }
-
-            return oszlop;
-        }
-
         private static int SorEllenorzes()
         {
             int sor;
-            while (!int.TryParse(Console.ReadLine(), out sor))
+            while (true)
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Nem számot adott meg!");
-                Console.ForegroundColor = ConsoleColor.White;
-                Console.Write("Add meg a sor számát(1-10): ");
-            }
+                if (!int.TryParse(Console.ReadLine(), out sor))
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Nem számot adott meg!");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.Write("Add meg a sor számát (1-10): ");
+                    continue;
+                }
 
-            return sor;
+                if (sor < 1 || sor > 10)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Nem adott meg 1-10-ig terjedő számot!");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.Write("Add meg a sor számát (1-10): ");
+                    continue;
+                }
+
+                return sor;
+            }
         }
+
+        private static int Oszlopellenorzes()
+        {
+            int oszlop;
+            while (true)
+            {
+                if (!int.TryParse(Console.ReadLine(), out oszlop))
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Nem számot adott meg!");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.Write("Add meg az oszlop számát (1-10): ");
+                    continue;
+                }
+
+                if (oszlop < 1 || oszlop > 10)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Nem adott meg 1-10-ig terjedő számot!");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.Write("Add meg az oszlop számát (1-10): ");
+                    continue;
+                }
+
+                return oszlop;
+            }
+        }
+
 
         private static void Menü(int cPoint)
         {

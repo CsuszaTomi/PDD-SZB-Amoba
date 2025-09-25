@@ -246,11 +246,11 @@ namespace AmőbaProjekt
                 Console.Write("│");
                 for (int oszlop = 1; oszlop < size; oszlop++)
                 {
-                    if (tabla[i - 1, i2 - 1] == "X")
+                    if (tabla[sor - 1, oszlop - 1] == "X")
                         Console.ForegroundColor = ConsoleColor.Blue;
-                    else if (tabla[i - 1, i2 - 1] == "O")
+                    else if (tabla[sor - 1, oszlop - 1] == "O")
                         Console.ForegroundColor = ConsoleColor.Red;
-                    else if (tabla[i - 1, i2 - 1] == ".")
+                    else if (tabla[sor - 1, oszlop - 1] == ".")
                         if (hatterszin == "Black")
                             Console.ForegroundColor = ConsoleColor.Black;
                         else if (hatterszin == "White")
@@ -263,9 +263,9 @@ namespace AmőbaProjekt
                             Console.ForegroundColor = ConsoleColor.Green;
                         else
                             Console.ForegroundColor = ConsoleColor.Black;
-                    Console.Write($" {tabla[i - 1, i2 - 1]} ");
+                    Console.Write($" {tabla[sor - 1, oszlop - 1]} ");
                     Console.ForegroundColor = ConsoleColor.White;
-                    if (i2 != 9)
+                    if (oszlop != 9)
                     {
                         Console.Write("│");
                     }
@@ -286,10 +286,26 @@ namespace AmőbaProjekt
                 if (sor == 9)
                 {
                     Console.Write("│");
-                    for (int i2 = 1; i2 < size; i2++)
+                    for (int oszlop = 1; oszlop < size; oszlop++)
                     {
-                        Console.Write($" {tabla[i - 1, i2 - 1]} ");
-                        if (i2 != 9)
+                        if (tabla[sor - 1, oszlop - 1] == "X")
+                            Console.ForegroundColor = ConsoleColor.Blue;
+                        else if (tabla[sor - 1, oszlop - 1] == "O")
+                            Console.ForegroundColor = ConsoleColor.Red;
+                        else if (tabla[sor - 1, oszlop - 1] == ".")
+                            if (hatterszin == "Black")
+                                Console.ForegroundColor = ConsoleColor.Black;
+                            else if (hatterszin == "White")
+                                Console.ForegroundColor = ConsoleColor.White;
+                            else if (hatterszin == "Red")
+                                Console.ForegroundColor = ConsoleColor.Red;
+                            else if (hatterszin == "Blue")
+                                Console.ForegroundColor = ConsoleColor.Blue;
+                            else if (hatterszin == "Green")
+                                Console.ForegroundColor = ConsoleColor.Green;
+                        Console.Write($" {tabla[sor - 1, oszlop - 1]} ");
+                        Console.ForegroundColor = ConsoleColor.White;
+                        if (oszlop != 9)
                         {
                             Console.Write("│"); 
 

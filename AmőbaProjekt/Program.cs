@@ -24,6 +24,7 @@ namespace AmőbaProjekt
                 Console.WriteLine();
                 Console.ReadLine();
             }
+            //valami dolog
         }
     }
 }

@@ -116,12 +116,18 @@ namespace AmőbaProjekt
                         mostanijatekos = "1. Játékos";
                     }
                     Tábla(sorok, oszlopok, tabla, hatterszin);
-                } while (jatek);
+                    lepesek--;
+                } while (jatek && lepesek > 0);
             }
         }
 
+        /// <summary>
+        /// Sor szám ellenőrzése hogy nem betü-e és 1-10 közötti szám-e
+        /// </summary>
+        /// <returns></returns>
         private static int SorEllenorzes()
         {
+            
             int sor;
             while (true)
             {
@@ -147,6 +153,10 @@ namespace AmőbaProjekt
             }
         }
 
+        /// <summary>
+        /// Oszlop szám ellenőrzése hogy nem betü-e és 1-10 közötti szám-e
+        /// </summary>
+        /// <returns></returns>
         private static int Oszlopellenorzes()
         {
             int oszlop;
@@ -174,7 +184,10 @@ namespace AmőbaProjekt
             }
         }
 
-
+        /// <summary>
+        /// A menü kirajzolása,lehetőségek kiirása
+        /// </summary>
+        /// <returns></returns>
         private static void Menü(int cPoint)
         {
             Console.Clear();
@@ -275,23 +288,11 @@ namespace AmőbaProjekt
                     Console.Write("│");
                     for (int i2 = 1; i2 < size; i2++)
                     {
-                        if (hatterszin == "Black")
-                            Console.ForegroundColor = ConsoleColor.Black;
-                        else if (hatterszin == "White")
-                            Console.ForegroundColor = ConsoleColor.White;
-                        else if (hatterszin == "Red")
-                            Console.ForegroundColor = ConsoleColor.Red;
-                        else if (hatterszin == "Blue")
-                            Console.ForegroundColor = ConsoleColor.Blue;
-                        else if (hatterszin == "Green")
-                            Console.ForegroundColor = ConsoleColor.Green;
-                        else
-                            Console.ForegroundColor = ConsoleColor.Black;
                         Console.Write($" {tabla[i - 1, i2 - 1]} ");
                         Console.ForegroundColor = ConsoleColor.White;
                         if (i2 != 9)
                         {
-                            Console.Write("│");
+                            Console.Write("│"); 
 
                         }
                     }

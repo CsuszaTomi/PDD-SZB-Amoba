@@ -22,6 +22,7 @@ namespace AmőbaProjekt
                     Console.Write(tabla[i, j] + " ");
                 }
                 Console.WriteLine();
+                Console.ReadLine();
             }
         }
     }

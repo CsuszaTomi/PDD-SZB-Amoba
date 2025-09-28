@@ -64,6 +64,26 @@ namespace AmobaProjekt
 
                     case 1: // Beállítások
                         Console.Clear();
+                        int beallitascurrentpoint = 0;
+                        Console.WriteLine("*** BEÁLLÍTÁSOK ***");
+                        switch (Console.ReadKey(true).Key)
+                        {
+                            case ConsoleKey.Enter:
+                                selected = true;
+                                break;
+
+                            case ConsoleKey.UpArrow:
+                                if (beallitascurrentpoint > 0) beallitascurrentpoint--;
+                                break;
+                            case ConsoleKey.DownArrow:
+                                if (beallitascurrentpoint < 2) beallitascurrentpoint++;
+                                break;
+
+                            default:
+                                Console.Beep();
+                                break;
+                        }
+
                         break;
 
                     case 2: // Kilépés
@@ -86,6 +106,16 @@ namespace AmobaProjekt
         {
             if (jatek)
             {
+                for (int i = 0; i < sorok; i++)
+                {
+                    for (int j = 0; j < oszlopok; j++)
+                    {
+                        tabla[i, j] = " ";
+                        hasznaltmezok[i, j] = " ";
+                    }
+                }
+                bool jatekos1fordulo = true;
+                string mostanijatekos = "1. Játékos";
                 int sor = 0;
                 int oszlop = 0;
                 do

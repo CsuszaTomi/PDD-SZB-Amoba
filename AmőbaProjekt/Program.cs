@@ -121,6 +121,15 @@ namespace AmobaProjekt
                         jatekos1fordulo = true;
                         mostanijatekos = "1. Játékos";
                     }
+                    //Függőleges,víszintes ellenőrzés
+                    if (true)
+                    {
+
+                    }
+                    //Átlós ellenőrzés
+                    if (true)
+                    {
+                    }
                     //Lépésszám csökkentése
                     Tabla(sorok, oszlopok, tabla);
                     lepesek--;

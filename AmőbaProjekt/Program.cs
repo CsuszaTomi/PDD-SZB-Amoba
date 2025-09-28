@@ -210,8 +210,6 @@ namespace AmobaProjekt
                     }
                     lepesek--;
                 } while (jatek && lepesek > 0);
-                currentPoint = 0;
-                Menu(currentPoint);
             }
         }
 

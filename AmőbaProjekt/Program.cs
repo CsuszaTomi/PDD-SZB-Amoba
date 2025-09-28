@@ -133,7 +133,10 @@ namespace AmobaProjekt
                                 Console.WriteLine($"{mostanijatekos} nyert!");
                                 Console.ForegroundColor = ConsoleColor.White;
                                 jatek = false;
-                                break;
+                                Console.ForegroundColor = ConsoleColor.Yellow;
+                                Console.WriteLine("Nyomd meg az entert a menübe való visszatéréshez!");
+                                Console.ForegroundColor = ConsoleColor.White;
+                                Console.ReadKey();
                             }
                         }
                     }
@@ -149,7 +152,10 @@ namespace AmobaProjekt
                                 Console.WriteLine($"{mostanijatekos} nyert!");
                                 Console.ForegroundColor = ConsoleColor.White;
                                 jatek = false;
-                                break;
+                                Console.ForegroundColor = ConsoleColor.Yellow;
+                                Console.WriteLine("Nyomd meg az entert a menübe való visszatéréshez!");
+                                Console.ForegroundColor = ConsoleColor.White;
+                                Console.ReadKey();
                             }
                         }
                     }
@@ -167,7 +173,10 @@ namespace AmobaProjekt
                                 Console.WriteLine($"{mostanijatekos} nyert!");
                                 Console.ForegroundColor = ConsoleColor.White;
                                 jatek = false;
-                                break;
+                                Console.ForegroundColor = ConsoleColor.Yellow;
+                                Console.WriteLine("Nyomd meg az entert a menübe való visszatéréshez!");
+                                Console.ForegroundColor = ConsoleColor.White;
+                                Console.ReadKey();
                             }
                         }
                     }
@@ -189,6 +198,8 @@ namespace AmobaProjekt
                     }
                     lepesek--;
                 } while (jatek && lepesek > 0);
+                currentPoint = 0;
+                Menu(currentPoint);
             }
         }
 

@@ -137,9 +137,9 @@ namespace AmobaProjekt
                             }
                         }
                     }
-                    for (int sorv = 0; sorv < sorok; sorv++)
+                    for (int sorv = 0; sorv < sorok - 4; sorv++)
                     {
-                        for (int oszlopv = 0; oszlopv < oszlopok - 4; oszlopv++)
+                        for (int oszlopv = 0; oszlopv < oszlopok; oszlopv++)
                         {
                             if (tabla[sorv, oszlopv] != " " && tabla[sorv, oszlopv] == tabla[sorv +1, oszlopv] && tabla[sorv, oszlopv] == tabla[sorv+2, oszlopv] && tabla[sorv, oszlopv] == tabla[sorv+3, oszlopv] && tabla[sorv, oszlopv] == tabla[sorv+4, oszlopv])
                             {
@@ -154,7 +154,6 @@ namespace AmobaProjekt
                         }
                     }
                     //Átlós ellenőrzés
-
                     for (int sor1 = 0; sor1 < sorok; sor1++)
                     {
                         for (int oszlop1 = 0; oszlop1 < oszlopok; oszlop1++)

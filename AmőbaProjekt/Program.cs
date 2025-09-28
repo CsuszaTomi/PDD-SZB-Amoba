@@ -163,7 +163,7 @@ namespace AmobaProjekt
                         }
                     }
                     //Átlós ellenőrzés
-                    for (int sor1 = 0; sor1 < sorok - 4; sor1++)
+                    for (int sor1 = 0; sor1 < sorok-4; sor1++)
                     {
                         for (int oszlop1 = 0; oszlop1 < oszlopok - 4; oszlop1++)
                         {

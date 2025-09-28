@@ -111,27 +111,65 @@ namespace AmobaProjekt
                     {
                         tabla[sor, oszlop] = jatekos1;
                         hasznaltmezok[sor, oszlop] = jatekos1;
-                        jatekos1fordulo = false;
-                        mostanijatekos = "2. Játékos";
+                        jatekos1fordulo = false;;
                     }
                     else
                     {
                         tabla[sor, oszlop] = jatekos2;
                         hasznaltmezok[sor, oszlop] = jatekos2;
                         jatekos1fordulo = true;
-                        mostanijatekos = "1. Játékos";
+
                     }
                     //Függőleges,víszintes ellenőrzés
-                    if (true)
+                    for (int sorv = 0; sorv < sorok; sorv++)
                     {
-
+                        for (int oszlopv = 0; oszlopv < oszlopok - 4; oszlopv++)
+                        {
+                            if (tabla[sorv, oszlopv] != " " && tabla[sorv, oszlopv] == tabla[sorv, oszlopv + 1] && tabla[sorv, oszlopv] == tabla[sorv, oszlopv + 2] && tabla[sorv, oszlopv] == tabla[sorv, oszlopv + 3] &&tabla[sorv, oszlopv] == tabla[sorv, oszlopv + 4])
+                            {
+                                Console.Clear();
+                                Tabla(sorok, oszlopok, tabla);
+                                Console.ForegroundColor = ConsoleColor.Magenta;
+                                Console.WriteLine($"{mostanijatekos} nyert!");
+                                Console.ForegroundColor = ConsoleColor.White;
+                                jatek = false;
+                                break;
+                            }
+                        }
+                    }
+                    for (int sorv = 0; sorv < sorok; sorv++)
+                    {
+                        for (int oszlopv = 0; oszlopv < oszlopok - 4; oszlopv++)
+                        {
+                            if (tabla[sorv, oszlopv] != " " && tabla[sorv, oszlopv] == tabla[sorv +1, oszlopv] && tabla[sorv, oszlopv] == tabla[sorv+2, oszlopv] && tabla[sorv, oszlopv] == tabla[sorv+3, oszlopv] && tabla[sorv, oszlopv] == tabla[sorv+4, oszlopv])
+                            {
+                                Console.Clear();
+                                Tabla(sorok, oszlopok, tabla);
+                                Console.ForegroundColor = ConsoleColor.Magenta;
+                                Console.WriteLine($"{mostanijatekos} nyert!");
+                                Console.ForegroundColor = ConsoleColor.White;
+                                jatek = false;
+                                break;
+                            }
+                        }
                     }
                     //Átlós ellenőrzés
                     if (true)
                     {
                     }
                     //Lépésszám csökkentése
-                    Tabla(sorok, oszlopok, tabla);
+                    if (jatek)
+                    {
+                        Tabla(sorok, oszlopok, tabla);
+                    }
+                    if (mostanijatekos == "1. Játékos")
+                    {
+                        mostanijatekos = "2. Játékos";
+                    }
+                    else
+                    {
+                        mostanijatekos = "1. Játékos";
+                    }
                     lepesek--;
                 } while (jatek && lepesek > 0);
             }

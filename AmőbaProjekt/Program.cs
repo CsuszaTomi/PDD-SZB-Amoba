@@ -18,6 +18,7 @@ namespace AmobaProjekt
             string mostanijatekos = "1. Játékos";
             int currentPoint = 0;
             bool jatek = false;
+            int size = 10;
             //Tábla feltöltése
             for (int i = 0; i < sorok; i++)
             {
@@ -127,11 +128,39 @@ namespace AmobaProjekt
 
                     }
                     //Átlós ellenőrzés
-                    if (true)
+
+                    for (int sor1 = 0; sor1 < size; sor1++)
                     {
+                        for (int oszlop1 = 0; oszlop1 < size; oszlop1++)
+                        {
+                            if (tabla[sor1,oszlop1] == "X")
+                            {
+                                if (tabla[sor1+1,oszlop+1] == "X" && tabla[sor1 + 2, oszlop + 2] == "X" && tabla[sor1 + 3, oszlop + 3] == "X" && tabla[sor1 + 4, oszlop + 4] == "X" && tabla[sor1 + 5, oszlop + 5] == "X")
+                                {
+                                    Console.WriteLine($"Nyertél");
+                                }
+
+                            }
+                        }
                     }
+
+
+
                     //Lépésszám csökkentése
-                    Tabla(sorok, oszlopok, tabla);
+
+                    if (jatek)
+                    {
+                        Tabla(sorok, oszlopok, tabla);
+                    }
+                    if (mostanijatekos == "1. Játékos")
+                    {
+                        mostanijatekos = "2. Játékos";
+                    }
+                    else
+                    {
+                        mostanijatekos = "1. Játékos";
+                    }
+                    ;
                     lepesek--;
                 } while (jatek && lepesek > 0);
             }
@@ -236,9 +265,8 @@ namespace AmobaProjekt
             Console.ForegroundColor = ConsoleColor.White;
         }
 
-        private static void Tabla(int sorok, int oszlopok, string[,] tabla)
+        private static void Tabla(int sorok, int oszlopok, string[,] tabla, int size)
         {
-            int size = 10;
 
             Console.Write("┌");
             for (int i = 0; i < size; i++)

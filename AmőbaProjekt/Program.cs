@@ -159,7 +159,17 @@ namespace AmobaProjekt
                     {
                         for (int oszlop1 = 0; oszlop1 < oszlopok - 4; oszlop1++)
                         {
-                            if (tabla[sor1, oszlop1] == "X" && tabla[sor1 + 1, oszlop1 + 1] == "X" && tabla[sor1 + 2, oszlop1 + 2] == "X" && tabla[sor1 + 3, oszlop1 + 3] == "X" && tabla[sor1 + 4, oszlop1 + 4] == "X")
+                            if (tabla[sor1, oszlop1] != " " && tabla[sor1, oszlop1] == tabla[sor1 + 1, oszlop1 + 1] && tabla[sor1, oszlop1] == tabla[sor1 + 2, oszlop1 + 2] && tabla[sor1, oszlop1] == tabla[sor1 + 3, oszlop1 + 3] && tabla[sor1, oszlop1] == tabla[sor1 + 4, oszlop1 + 4])
+                            {
+                                Console.Clear();
+                                Tabla(sorok, oszlopok, tabla);
+                                Console.ForegroundColor = ConsoleColor.Magenta;
+                                Console.WriteLine($"{mostanijatekos} nyert!");
+                                Console.ForegroundColor = ConsoleColor.White;
+                                jatek = false;
+                                break;
+                            }
+                            else if (tabla[sor1 + 4, oszlop1] != " " && tabla[sor1 + 4, oszlop1] == tabla[sor1 + 3, oszlop1 + 1] && tabla[sor1 + 4, oszlop1] == tabla[sor1 + 2, oszlop1 + 2] && tabla[sor1 + 4, oszlop1] == tabla[sor1 + 1, oszlop1 + 3] && tabla[sor1 + 4, oszlop1] == tabla[sor1, oszlop1 + 4])
                             {
                                 Console.Clear();
                                 Tabla(sorok, oszlopok, tabla);

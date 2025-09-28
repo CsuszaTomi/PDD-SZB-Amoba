@@ -133,13 +133,16 @@ namespace AmobaProjekt
                                 Console.WriteLine($"{mostanijatekos} nyert!");
                                 Console.ForegroundColor = ConsoleColor.White;
                                 jatek = false;
-                                break;
+                                Console.ForegroundColor = ConsoleColor.Yellow;
+                                Console.WriteLine("Nyomd meg az entert a menübe való visszatéréshez!");
+                                Console.ForegroundColor = ConsoleColor.White;
+                                Console.ReadKey();
                             }
                         }
                     }
-                    for (int sorv = 0; sorv < sorok; sorv++)
+                    for (int sorv = 0; sorv < sorok - 4; sorv++)
                     {
-                        for (int oszlopv = 0; oszlopv < oszlopok - 4; oszlopv++)
+                        for (int oszlopv = 0; oszlopv < oszlopok; oszlopv++)
                         {
                             if (tabla[sorv, oszlopv] != " " && tabla[sorv, oszlopv] == tabla[sorv + 1, oszlopv] && tabla[sorv, oszlopv] == tabla[sorv + 2, oszlopv] && tabla[sorv, oszlopv] == tabla[sorv + 3, oszlopv] && tabla[sorv, oszlopv] == tabla[sorv + 4, oszlopv])
                             {
@@ -149,7 +152,10 @@ namespace AmobaProjekt
                                 Console.WriteLine($"{mostanijatekos} nyert!");
                                 Console.ForegroundColor = ConsoleColor.White;
                                 jatek = false;
-                                break;
+                                Console.ForegroundColor = ConsoleColor.Yellow;
+                                Console.WriteLine("Nyomd meg az entert a menübe való visszatéréshez!");
+                                Console.ForegroundColor = ConsoleColor.White;
+                                Console.ReadKey();
                             }
                         }
                     }
@@ -177,10 +183,14 @@ namespace AmobaProjekt
                                 Console.WriteLine($"{mostanijatekos} nyert!");
                                 Console.ForegroundColor = ConsoleColor.White;
                                 jatek = false;
-                                break;
+                                Console.ForegroundColor = ConsoleColor.Yellow;
+                                Console.WriteLine("Nyomd meg az entert a menübe való visszatéréshez!");
+                                Console.ForegroundColor = ConsoleColor.White;
+                                Console.ReadKey();
                             }
                         }
                     }
+
 
 
                     //Lépésszám csökkentése
@@ -198,6 +208,8 @@ namespace AmobaProjekt
                     }
                     lepesek--;
                 } while (jatek && lepesek > 0);
+                currentPoint = 0;
+                Menu(currentPoint);
             }
         }
 

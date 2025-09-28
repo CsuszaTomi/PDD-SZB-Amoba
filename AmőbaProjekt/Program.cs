@@ -160,7 +160,6 @@ namespace AmobaProjekt
                         }
                     }
                     //Átlós ellenőrzés
-
                     for (int sor1 = 0; sor1 < sorok-4; sor1++)
                     {
                         for (int oszlop1 = 0; oszlop1 < oszlopok - 4; oszlop1++)
@@ -173,7 +172,10 @@ namespace AmobaProjekt
                                 Console.WriteLine($"{mostanijatekos} nyert!");
                                 Console.ForegroundColor = ConsoleColor.White;
                                 jatek = false;
-                                break;
+                                Console.ForegroundColor = ConsoleColor.Yellow;
+                                Console.WriteLine("Nyomd meg az entert a menübe való visszatéréshez!");
+                                Console.ForegroundColor = ConsoleColor.White;
+                                Console.ReadKey();
                             }
                             else if (tabla[sor1 + 4, oszlop1] != " " && tabla[sor1 + 4, oszlop1] == tabla[sor1 + 3, oszlop1 + 1] && tabla[sor1 + 4, oszlop1] == tabla[sor1 + 2, oszlop1 + 2] && tabla[sor1 + 4, oszlop1] == tabla[sor1 + 1, oszlop1 + 3] && tabla[sor1 + 4, oszlop1] == tabla[sor1, oszlop1 + 4])
                             {
@@ -190,9 +192,6 @@ namespace AmobaProjekt
                             }
                         }
                     }
-
-
-
                     //Lépésszám csökkentése
                     if (jatek)
                     {

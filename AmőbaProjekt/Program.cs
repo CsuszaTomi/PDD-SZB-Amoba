@@ -170,9 +170,6 @@ namespace AmobaProjekt
                             }
                         }
                     }
-
-
-
                     //Lépésszám csökkentése
                     if (jatek)
                     {

@@ -64,28 +64,17 @@ namespace AmobaProjekt
 
                     case 1: // Beállítások
                         Console.Clear();
-                        int beallitascurrentpoint = 0;
                         Console.WriteLine("*** BEÁLLÍTÁSOK ***");
-                        switch (Console.ReadKey(true).Key)
+                        Console.WriteLine("1. Háttérszín állítása");
+                        Console.WriteLine("2. Játékmenet beállítások");
+                        Console.WriteLine("3. Vissza a menübe");
+                        int beallitasvalaszto = 0;
+                        while (beallitasvalaszto < 1)
                         {
-                            case ConsoleKey.Enter:
-                                selected = true;
-                                break;
-
-                            case ConsoleKey.UpArrow:
-                                if (beallitascurrentpoint > 0) beallitascurrentpoint--;
-                                break;
-                            case ConsoleKey.DownArrow:
-                                if (beallitascurrentpoint < 2) beallitascurrentpoint++;
-                                break;
-
-                            default:
-                                Console.Beep();
-                                break;
+                            Console.Write("Add meg a menüpont számát: ");
+                            beallitasvalaszto = Convert.ToInt32(Console.ReadLine());
                         }
-
                         break;
-
                     case 2: // Kilépés
                         Console.Clear();
                         Console.Write("Biztosan ki szeretnél lépni? (i/n): ");
@@ -114,8 +103,8 @@ namespace AmobaProjekt
                         hasznaltmezok[i, j] = " ";
                     }
                 }
-                bool jatekos1fordulo = true;
-                string mostanijatekos = "1. Játékos";
+                jatekos1fordulo = true;
+                mostanijatekos = "1. Játékos";
                 int sor = 0;
                 int oszlop = 0;
                 do

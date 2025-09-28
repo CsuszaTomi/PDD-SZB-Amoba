@@ -18,7 +18,6 @@ namespace AmobaProjekt
             string mostanijatekos = "1. Játékos";
             int currentPoint = 0;
             bool jatek = false;
-            int size = 10;
             //Tábla feltöltése
             for (int i = 0; i < sorok; i++)
             {
@@ -156,9 +155,9 @@ namespace AmobaProjekt
                     }
                     //Átlós ellenőrzés
 
-                    for (int sor1 = 0; sor1 < size; sor1++)
+                    for (int sor1 = 0; sor1 < sorok; sor1++)
                     {
-                        for (int oszlop1 = 0; oszlop1 < size; oszlop1++)
+                        for (int oszlop1 = 0; oszlop1 < oszlopok; oszlop1++)
                         {
                             if (tabla[sor1,oszlop1] == "X")
                             {
@@ -287,9 +286,9 @@ namespace AmobaProjekt
             Console.ForegroundColor = ConsoleColor.White;
         }
 
-        private static void Tabla(int sorok, int oszlopok, string[,] tabla, int size)
+        private static void Tabla(int sorok, int oszlopok, string[,] tabla)
         {
-
+            int size = 10;
             Console.Write("┌");
             for (int i = 0; i < size; i++)
             {

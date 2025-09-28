@@ -58,7 +58,7 @@ namespace AmobaProjekt
                 {
                     case 0: // Játék kezdése
                         Console.Clear();
-                        currentPoint = 2;
+                        Jatek(sorok, oszlopok, tabla, jatekos1, jatekos2, hasznaltmezok, ref lepesek, ref jatekos1fordulo, ref mostanijatekos, ref currentPoint, ref jatek);
                         jatek = true;
                         break;
 
@@ -74,9 +74,12 @@ namespace AmobaProjekt
                             currentPoint = 0;
                         break;
                 }
-            } while (currentPoint != 2);
 
-            // Játék futtatása
+            } while (currentPoint != 2);
+        }
+
+        private static void Jatek(int sorok, int oszlopok, string[,] tabla, string jatekos1, string jatekos2, string[,] hasznaltmezok, ref int lepesek, ref bool jatekos1fordulo, ref string mostanijatekos, ref int currentPoint, ref bool jatek)
+        {
             if (jatek)
             {
                 int sor = 0;
@@ -160,8 +163,7 @@ namespace AmobaProjekt
                         }
                     }
                     //Átlós ellenőrzés
-
-                    for (int sor1 = 0; sor1 < sorok-4; sor1++)
+                    for (int sor1 = 0; sor1 < sorok - 4; sor1++)
                     {
                         for (int oszlop1 = 0; oszlop1 < oszlopok - 4; oszlop1++)
                         {
@@ -173,7 +175,10 @@ namespace AmobaProjekt
                                 Console.WriteLine($"{mostanijatekos} nyert!");
                                 Console.ForegroundColor = ConsoleColor.White;
                                 jatek = false;
-                                break;
+                                Console.ForegroundColor = ConsoleColor.Yellow;
+                                Console.WriteLine("Nyomd meg az entert a menübe való visszatéréshez!");
+                                Console.ForegroundColor = ConsoleColor.White;
+                                Console.ReadKey();
                             }
                             else if (tabla[sor1 + 4, oszlop1] != " " && tabla[sor1 + 4, oszlop1] == tabla[sor1 + 3, oszlop1 + 1] && tabla[sor1 + 4, oszlop1] == tabla[sor1 + 2, oszlop1 + 2] && tabla[sor1 + 4, oszlop1] == tabla[sor1 + 1, oszlop1 + 3] && tabla[sor1 + 4, oszlop1] == tabla[sor1, oszlop1 + 4])
                             {
@@ -190,9 +195,6 @@ namespace AmobaProjekt
                             }
                         }
                     }
-
-
-
                     //Lépésszám csökkentése
                     if (jatek)
                     {

@@ -78,6 +78,10 @@ namespace AmobaProjekt
             } while (currentPoint != 2);
         }
 
+        /// <summary>
+        /// Maga a játék indítása,lépéskérés,ellenőrzések
+        /// </summary>
+        /// <returns></returns>
         private static void Jatek(int sorok, int oszlopok, string[,] tabla, string jatekos1, string jatekos2, string[,] hasznaltmezok, ref int lepesek, ref bool jatekos1fordulo, ref string mostanijatekos, ref int currentPoint, ref bool jatek)
         {
             if (jatek)

@@ -18,6 +18,10 @@ namespace AmobaProjekt
             string mostanijatekos = "1. Játékos";
             int currentPoint = 0;
             bool jatek = false;
+            int beallitasvalaszto = 0;
+            int szinvalaszto = 0;
+            int jatekopcio = 0;
+            int size = 10;
             //Tábla feltöltése
             for (int i = 0; i < sorok; i++)
             {
@@ -58,21 +62,112 @@ namespace AmobaProjekt
                 {
                     case 0: // Játék kezdése
                         Console.Clear();
-                        Jatek(sorok, oszlopok, tabla, jatekos1, jatekos2, hasznaltmezok, ref lepesek, ref jatekos1fordulo, ref mostanijatekos, ref currentPoint, ref jatek);
+                        Jatek(sorok, oszlopok, tabla, jatekos1, jatekos2, hasznaltmezok, ref lepesek, ref jatekos1fordulo, ref mostanijatekos, ref currentPoint, ref jatek, size);
                         jatek = true;
                         break;
 
                     case 1: // Beállítások
                         Console.Clear();
+                        beallitasvalaszto = 0;
+                        Console.ForegroundColor = ConsoleColor.Yellow;
                         Console.WriteLine("*** BEÁLLÍTÁSOK ***");
+                        Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine("1. Háttérszín állítása");
+                        Console.ForegroundColor = ConsoleColor.Blue;
                         Console.WriteLine("2. Játékmenet beállítások");
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("3. Vissza a menübe");
-                        int beallitasvalaszto = 0;
+                        Console.ForegroundColor = ConsoleColor.White;
                         while (beallitasvalaszto < 1)
                         {
                             Console.Write("Add meg a menüpont számát: ");
                             beallitasvalaszto = Convert.ToInt32(Console.ReadLine());
+                        }
+                        if (beallitasvalaszto == 1)
+                        {
+                            Console.Clear();
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.WriteLine("*** HÁTTÉRSZÍN ÁLLÍTÓ ***");
+                            Console.ForegroundColor = ConsoleColor.Gray;
+                            Console.WriteLine("1. Fekete");
+                            Console.ForegroundColor = ConsoleColor.Blue;
+                            Console.WriteLine("2. Kék");
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.WriteLine("3. Zöld");
+                            Console.ForegroundColor = ConsoleColor.Cyan;
+                            Console.WriteLine("4. Cián");
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("5. Piros");
+                            Console.ForegroundColor = ConsoleColor.White;
+                            Console.Write("Add meg a háttérszín számát: ");
+                            while (!int.TryParse(Console.ReadLine(), out szinvalaszto))
+                            { 
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine("Nem jó számot adott meg!");
+                                Console.ForegroundColor = ConsoleColor.White;
+                                Console.Write("Add meg a háttérszín számát: ");
+                            }
+                            switch (szinvalaszto)
+                            {
+                                case 1:
+                                    Console.BackgroundColor = ConsoleColor.Black;
+                                    Console.Clear();
+                                    break;
+                                case 2:
+                                    Console.BackgroundColor = ConsoleColor.DarkBlue;
+                                    Console.Clear();
+                                    break;
+                                case 3:
+                                    Console.BackgroundColor = ConsoleColor.DarkGreen;
+                                    Console.Clear();
+                                    break;
+                                case 4:
+                                    Console.BackgroundColor = ConsoleColor.DarkCyan;
+                                    Console.Clear();
+                                    break;
+                                case 5:
+                                    Console.BackgroundColor = ConsoleColor.DarkRed;
+                                    Console.Clear();
+                                    break;
+                                default:
+                                    Console.BackgroundColor = ConsoleColor.Black;
+                                    Console.Clear();
+                                    break;
+                            }
+                        }
+                        if (beallitasvalaszto == 2)
+                        {
+                            jatekopcio = 0;
+                            Console.Clear();
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.WriteLine("*** JÁTÉK BEÁLLÍTÁSOK ***");
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.WriteLine("1. Játéktér méretének módosítása");
+                            Console.ForegroundColor = ConsoleColor.Blue;
+                            Console.WriteLine("2. Játékosok jelöléseinek módosítása");
+                            Console.ForegroundColor = ConsoleColor.White;
+                            Console.Write("Add meg az opció számát: ");
+                            while (!int.TryParse(Console.ReadLine(), out jatekopcio))
+                            {
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine("Nem jó számot adott meg!");
+                                Console.ForegroundColor = ConsoleColor.White;
+                                Console.Write("Add meg az opció számát: ");
+                            }
+                            if (jatekopcio == 1)
+                            {
+                                Console.WriteLine("A tábla mérete jelenleg 10x10, maximum 15x15-ös táblát lehet beállítani.");
+                                Console.WriteLine("Add meg a tábla méretét számát (10-15): ");
+                                while (!int.TryParse(Console.ReadLine(), out size) || size < 10 || size > 15)
+                                {
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    Console.WriteLine("Nem jó számot adott meg!");
+                                    Console.ForegroundColor = ConsoleColor.White;
+                                    Console.Write("Add meg a tábla méretét számát (10-15): ");
+                                }
+                                sorok = size;
+                                oszlopok = size;
+                            }
                         }
                         break;
                     case 2: // Kilépés
@@ -91,10 +186,12 @@ namespace AmobaProjekt
         /// Maga a játék indítása,lépéskérés,ellenőrzések
         /// </summary>
         /// <returns></returns>
-        private static void Jatek(int sorok, int oszlopok, string[,] tabla, string jatekos1, string jatekos2, string[,] hasznaltmezok, ref int lepesek, ref bool jatekos1fordulo, ref string mostanijatekos, ref int currentPoint, ref bool jatek)
+        private static void Jatek(int sorok, int oszlopok, string[,] tabla, string jatekos1, string jatekos2, string[,] hasznaltmezok, ref int lepesek, ref bool jatekos1fordulo, ref string mostanijatekos, ref int currentPoint, ref bool jatek, int size)
         {
             if (jatek)
             {
+                tabla = new string[sorok, oszlopok];
+                hasznaltmezok = new string[sorok, oszlopok];
                 for (int i = 0; i < sorok; i++)
                 {
                     for (int j = 0; j < oszlopok; j++)
@@ -110,15 +207,15 @@ namespace AmobaProjekt
                 do
                 {
                     Console.Clear();
-                    Tabla(sorok, oszlopok, tabla);
+                    Tabla(sorok, oszlopok, tabla, size);
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine($"Az {mostanijatekos} következik");
                     Console.ForegroundColor = ConsoleColor.White;
 
                     Console.Write("Add meg a sor számát (1-10): ");
-                    sor = SorEllenorzes() - 1;
+                    sor = SorEllenorzes(size) - 1;
                     Console.Write("Add meg az oszlop számát (1-10): ");
-                    oszlop = Oszlopellenorzes() - 1;
+                    oszlop = Oszlopellenorzes(size) - 1;
 
                     // Ellenőrzés
                     while (hasznaltmezok[sor, oszlop] == jatekos1 || hasznaltmezok[sor, oszlop] == jatekos2)
@@ -128,9 +225,9 @@ namespace AmobaProjekt
                         Console.ForegroundColor = ConsoleColor.White;
 
                         Console.Write("Add meg a sor számát (1-10): ");
-                        sor = SorEllenorzes() - 1;
+                        sor = SorEllenorzes(size) - 1;
                         Console.Write("Add meg az oszlop számát (1-10): ");
-                        oszlop = Oszlopellenorzes() - 1;
+                        oszlop = Oszlopellenorzes(size) - 1;
                     }
                     //Játékos lépése
                     if (jatekos1fordulo)
@@ -154,7 +251,7 @@ namespace AmobaProjekt
                             if (tabla[sorv, oszlopv] != " " && tabla[sorv, oszlopv] == tabla[sorv, oszlopv + 1] && tabla[sorv, oszlopv] == tabla[sorv, oszlopv + 2] && tabla[sorv, oszlopv] == tabla[sorv, oszlopv + 3] && tabla[sorv, oszlopv] == tabla[sorv, oszlopv + 4])
                             {
                                 Console.Clear();
-                                Tabla(sorok, oszlopok, tabla);
+                                Tabla(sorok, oszlopok, tabla, size);
                                 Console.ForegroundColor = ConsoleColor.Magenta;
                                 Console.WriteLine($"{mostanijatekos} nyert!");
                                 Console.ForegroundColor = ConsoleColor.White;
@@ -173,7 +270,7 @@ namespace AmobaProjekt
                             if (tabla[sorv, oszlopv] != " " && tabla[sorv, oszlopv] == tabla[sorv + 1, oszlopv] && tabla[sorv, oszlopv] == tabla[sorv + 2, oszlopv] && tabla[sorv, oszlopv] == tabla[sorv + 3, oszlopv] && tabla[sorv, oszlopv] == tabla[sorv + 4, oszlopv])
                             {
                                 Console.Clear();
-                                Tabla(sorok, oszlopok, tabla);
+                                Tabla(sorok, oszlopok, tabla, size);
                                 Console.ForegroundColor = ConsoleColor.Magenta;
                                 Console.WriteLine($"{mostanijatekos} nyert!");
                                 Console.ForegroundColor = ConsoleColor.White;
@@ -193,7 +290,7 @@ namespace AmobaProjekt
                             if (tabla[sor1, oszlop1] != " " && tabla[sor1, oszlop1] == tabla[sor1 + 1, oszlop1 + 1] && tabla[sor1, oszlop1] == tabla[sor1 + 2, oszlop1 + 2] && tabla[sor1, oszlop1] == tabla[sor1 + 3, oszlop1 + 3] && tabla[sor1, oszlop1] == tabla[sor1 + 4, oszlop1 + 4])
                             {
                                 Console.Clear();
-                                Tabla(sorok, oszlopok, tabla);
+                                Tabla(sorok, oszlopok, tabla,size);
                                 Console.ForegroundColor = ConsoleColor.Magenta;
                                 Console.WriteLine($"{mostanijatekos} nyert!");
                                 Console.ForegroundColor = ConsoleColor.White;
@@ -206,7 +303,7 @@ namespace AmobaProjekt
                             else if (tabla[sor1 + 4, oszlop1] != " " && tabla[sor1 + 4, oszlop1] == tabla[sor1 + 3, oszlop1 + 1] && tabla[sor1 + 4, oszlop1] == tabla[sor1 + 2, oszlop1 + 2] && tabla[sor1 + 4, oszlop1] == tabla[sor1 + 1, oszlop1 + 3] && tabla[sor1 + 4, oszlop1] == tabla[sor1, oszlop1 + 4])
                             {
                                 Console.Clear();
-                                Tabla(sorok, oszlopok, tabla);
+                                Tabla(sorok, oszlopok, tabla, size);
                                 Console.ForegroundColor = ConsoleColor.Magenta;
                                 Console.WriteLine($"{mostanijatekos} nyert!");
                                 Console.ForegroundColor = ConsoleColor.White;
@@ -221,7 +318,7 @@ namespace AmobaProjekt
                     //Lépésszám csökkentése
                     if (jatek)
                     {
-                        Tabla(sorok, oszlopok, tabla);
+                        Tabla(sorok, oszlopok, tabla, size);
                     }
                     if (mostanijatekos == "1. Játékos")
                     {
@@ -240,7 +337,7 @@ namespace AmobaProjekt
         /// Sor szám ellenőrzése hogy nem betü-e és 1-10 közötti szám-e
         /// </summary>
         /// <returns></returns>
-        private static int SorEllenorzes()
+        private static int SorEllenorzes(int size)
         {
             int sor;
             while (true)
@@ -250,15 +347,15 @@ namespace AmobaProjekt
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Nem számot adott meg!");
                     Console.ForegroundColor = ConsoleColor.White;
-                    Console.Write("Add meg a sor számát (1-10): ");
+                    Console.Write($"Add meg a sor számát (1-{size}) ");
                     continue;
                 }
-                if (sor < 1 || sor > 10)
+                if (sor < 1 || sor > size)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Nem adott meg 1-10-ig terjedő számot!");
+                    Console.WriteLine($"Nem adott meg 1-{size}-ig terjedő számot!");
                     Console.ForegroundColor = ConsoleColor.White;
-                    Console.Write("Add meg a sor számát (1-10): ");
+                    Console.Write($"Add meg a sor számát (1-{size}): ");
                     continue;
                 }
                 return sor;
@@ -269,7 +366,7 @@ namespace AmobaProjekt
         /// Oszlop szám ellenőrzése hogy nem betü-e és 1-10 közötti szám-e
         /// </summary>
         /// <returns></returns>
-        private static int Oszlopellenorzes()
+        private static int Oszlopellenorzes(int size)
         {
             int oszlop;
             while (true)
@@ -279,15 +376,15 @@ namespace AmobaProjekt
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Nem számot adott meg!");
                     Console.ForegroundColor = ConsoleColor.White;
-                    Console.Write("Add meg az oszlop számát (1-10): ");
+                    Console.Write($"Add meg az oszlop számát (1-{size}): ");
                     continue;
                 }
-                if (oszlop < 1 || oszlop > 10)
+                if (oszlop < 1 || oszlop > size)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Nem adott meg 1-10-ig terjedő számot!");
+                    Console.WriteLine($"Nem adott meg 1-{size}-ig terjedő számot!!");
                     Console.ForegroundColor = ConsoleColor.White;
-                    Console.Write("Add meg az oszlop számát (1-10): ");
+                    Console.Write($"Add meg az oszlop számát (1-{size}): ");
                     continue;
                 }
                 return oszlop;
@@ -335,9 +432,8 @@ namespace AmobaProjekt
             Console.ForegroundColor = ConsoleColor.White;
         }
 
-        private static void Tabla(int sorok, int oszlopok, string[,] tabla)
+        private static void Tabla(int sorok, int oszlopok, string[,] tabla, int size)
         {
-            int size = 10;
             Console.Write("┌");
             for (int i = 0; i < size; i++)
             {

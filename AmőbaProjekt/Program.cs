@@ -203,6 +203,14 @@ namespace AmobaProjekt
                                 Console.Write("Add meg az 2. játékos jelölését (alapértelmezett: O): ");
                                 Console.ForegroundColor = ConsoleColor.White;
                                 jatekos2v = Console.ReadLine();
+                                while (jatekos2v != jatekos1v) 
+                                {
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    Console.WriteLine("Ezt a karaktert az 1. játékos már használja! Adja meg újra vagy nyomjon entert!");
+                                    Console.ForegroundColor = ConsoleColor.White;
+                                    jatekos2v = Console.ReadLine();
+                                }
+
                                 if (jatekos2v != "" || jatekos2v != " ")
                                 {
                                     if (jatekos2v.Length > 1)

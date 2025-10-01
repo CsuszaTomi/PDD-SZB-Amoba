@@ -210,7 +210,7 @@ namespace AmobaProjekt
                                     jatekos2v = Console.ReadLine();
                                 }
 
-                                if (jatekos2v != "" || jatekos2v != " ")
+                                while (jatekos2v != "" || jatekos2v != " ")
                                 {
                                     if (jatekos2v.Length > 1 || jatekos2v.Length < 1)
                                     {
@@ -452,7 +452,7 @@ namespace AmobaProjekt
         }
 
         /// <summary>
-        /// A menü kirajzolása,lehetőségek kiirása
+        /// A menü kirajzolása, lehetőségek kiirása
         /// </summary>
         /// <returns></returns>
         private static void Menu(int cPoint)

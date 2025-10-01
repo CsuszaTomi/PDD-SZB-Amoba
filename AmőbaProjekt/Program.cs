@@ -180,46 +180,44 @@ namespace AmobaProjekt
                                 Console.Write("Add meg az 1. játékos jelölését (alapértelmezett: X): ");
                                 Console.ForegroundColor = ConsoleColor.White;
                                 jatekos1v = Console.ReadLine();
-                                if (jatekos1v != "" || jatekos1v != " ")
+                                while (jatekos1v != "" || jatekos1v != " ")
                                 {
-                                    if (jatekos1v.Length > 1)
+                                    if (jatekos1v.Length > 1 || jatekos1v.Length < 1)
                                     {
                                         Console.ForegroundColor = ConsoleColor.Red;
-                                        Console.WriteLine("Több karaktert adott meg mint 1! Adja meg újra vagy nyomjon entert");
+                                        Console.WriteLine("Nem jól adta meg a jelölést! Adja meg újra!");
+                                        Console.ForegroundColor = ConsoleColor.Green;
+                                        Console.Write("Add meg az 1. játékos jelölését (alapértelmezett: X): ");
                                         Console.ForegroundColor = ConsoleColor.White;
                                         jatekos1v = Console.ReadLine();
                                     }
                                     else
                                     {
                                         jatekos1 = jatekos1v;
+                                        break;
                                     }
-                                }
-                                else
-                                {
-                                    break;
                                 }
                                 string jatekos2v;
                                 Console.ForegroundColor = ConsoleColor.Blue;
                                 Console.Write("Add meg az 2. játékos jelölését (alapértelmezett: O): ");
                                 Console.ForegroundColor = ConsoleColor.White;
                                 jatekos2v = Console.ReadLine();
-                                if (jatekos2v != "" || jatekos2v != " ")
+                                while (jatekos2v != "" || jatekos2v != " ")
                                 {
-                                    if (jatekos2v.Length > 1)
+                                    if (jatekos2v.Length > 1 || jatekos2v.Length < 1)
                                     {
                                         Console.ForegroundColor = ConsoleColor.Red;
-                                        Console.WriteLine("Több karaktert adott meg mint 1! Adja meg újra vagy nyomjon entert");
+                                        Console.WriteLine("Nem jól adta meg a jelölést! Adja meg újra!");
+                                        Console.ForegroundColor = ConsoleColor.Green;
+                                        Console.Write("Add meg az 2. játékos jelölését (alapértelmezett: O): ");
                                         Console.ForegroundColor = ConsoleColor.White;
                                         jatekos2v = Console.ReadLine();
                                     }
                                     else
                                     {
                                         jatekos2 = jatekos2v;
+                                        break;
                                     }
-                                }
-                                else
-                                {
-                                    break;
                                 }
                             }
                         }
@@ -266,9 +264,9 @@ namespace AmobaProjekt
                     Console.WriteLine($"Az {mostanijatekos} következik");
                     Console.ForegroundColor = ConsoleColor.White;
 
-                    Console.Write("Add meg a sor számát (1-10): ");
+                    Console.Write($"Add meg a sor számát (1-{size}): ");
                     sor = SorEllenorzes(size) - 1;
-                    Console.Write("Add meg az oszlop számát (1-10): ");
+                    Console.Write($"Add meg az oszlop számát (1-{size}): ");
                     oszlop = Oszlopellenorzes(size) - 1;
 
                     // Ellenőrzés
@@ -278,9 +276,9 @@ namespace AmobaProjekt
                         Console.WriteLine("Erre a mezőre már lépett valaki!");
                         Console.ForegroundColor = ConsoleColor.White;
 
-                        Console.Write("Add meg a sor számát (1-10): ");
+                        Console.Write($"Add meg a sor számát (1-{size}): ");
                         sor = SorEllenorzes(size) - 1;
-                        Console.Write("Add meg az oszlop számát (1-10): ");
+                        Console.Write($"Add meg az oszlop számát (1-{size}): ");
                         oszlop = Oszlopellenorzes(size) - 1;
                     }
                     //Játékos lépése

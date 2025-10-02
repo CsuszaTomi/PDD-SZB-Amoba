@@ -179,16 +179,16 @@ namespace AmobaProjekt
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine("*** TÁBLA MÉRET ÁLLÍTÓ ***");
                     Console.ForegroundColor = ConsoleColor.DarkYellow;
-                    Console.WriteLine($"A tábla mérete jelenleg {size}x{size}, maximum 25x25-es táblát lehet beállítani.");
+                    Console.WriteLine($"A tábla mérete jelenleg {size}x{size}, maximum 50x50-es táblát lehet beállítani.");
                     Console.ForegroundColor = ConsoleColor.Green;
-                    Console.Write("Add meg a tábla méretét(10-25): ");
+                    Console.Write("Add meg a tábla méretét(5-50): ");
                     Console.ForegroundColor = ConsoleColor.White;
-                    while (!int.TryParse(Console.ReadLine(), out size) || size < 10 || size > 25)
+                    while (!int.TryParse(Console.ReadLine(), out size) || size < 5 || size > 50)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("Nem jó számot adott meg!");
                         Console.ForegroundColor = ConsoleColor.White;
-                        Console.Write("Add meg a tábla méretét(10-25): ");
+                        Console.Write("Add meg a tábla méretét(5-50): ");
                     }
                     sorok = size;
                     oszlopok = size;
@@ -603,7 +603,16 @@ namespace AmobaProjekt
 
         private static void Tabla(int sorok, int oszlopok, string[,] tabla, int size, string jatekos1, string jatekos2)
         {
-            Console.Write("┌");
+            // Oszlop szamok kiirasa
+            Console.Write("   ");
+            for (int i = 0; i < size; i++)
+            {
+                Console.Write($" {i + 1,2} ");
+            }
+            Console.WriteLine();
+
+            // Felso keret
+            Console.Write("  ┌");
             for (int i = 0; i < size; i++)
             {
                 Console.Write("───");
@@ -613,23 +622,26 @@ namespace AmobaProjekt
 
             for (int sor = 0; sor < size; sor++)
             {
-                Console.Write("│");
+                Console.Write($"{sor + 1,2}│"); //sor számok kiirasa
                 for (int oszlop = 0; oszlop < size; oszlop++)
                 {
                     if (tabla[sor, oszlop] == jatekos1)
                         Console.ForegroundColor = ConsoleColor.Blue;
                     else if (tabla[sor, oszlop] == jatekos2)
                         Console.ForegroundColor = ConsoleColor.Red;
+                    else
+                        Console.ForegroundColor = ConsoleColor.White;
 
                     Console.Write($" {tabla[sor, oszlop]} ");
                     Console.ForegroundColor = ConsoleColor.White;
+
                     if (oszlop != size - 1) Console.Write("│");
                 }
                 Console.Write("│\n");
 
                 if (sor != size - 1)
                 {
-                    Console.Write("├");
+                    Console.Write("  ├");
                     for (int elvalaszto = 0; elvalaszto < size; elvalaszto++)
                     {
                         Console.Write("───");
@@ -639,7 +651,8 @@ namespace AmobaProjekt
                 }
             }
 
-            Console.Write("└");
+            // Also keret
+            Console.Write("  └");
             for (int i = 0; i < size; i++)
             {
                 Console.Write("───");

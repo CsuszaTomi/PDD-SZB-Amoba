@@ -300,10 +300,17 @@ namespace AmobaProjekt
                 mostanijatekos = "1. Játékos";
                 int sor = 0;
                 int oszlop = 0;
+                int elejikiiras = 0;
                 do
                 {
                     Console.Clear();
                     Tabla(sorok, oszlopok, tabla, size, jatekos1, jatekos2);
+                    if (elejikiiras == 0)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Kilépéshez írd be hogy esc/kilepes/vissza.");
+                        elejikiiras++;
+                    }
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine($"Az {mostanijatekos} következik");
                     Console.ForegroundColor = ConsoleColor.White;
@@ -457,33 +464,42 @@ namespace AmobaProjekt
             string sorinput = Console.ReadLine();
             int sor;
             bool kilep = false;
-            while (true)
+            if (sorinput == "esc" || sorinput == "kilepes" || sorinput == "vissza")
             {
-                if(sorinput == "esc" || sorinput == "kilepes" || sorinput == "vissza")
-                {
-                    kilep = true;
-                    return 999;
-                }
-                if (!int.TryParse(sorinput, out sor) && kilep == false)
+                kilep = true;
+                return 999;
+            }
+            while (!int.TryParse(sorinput, out sor) && kilep == false)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Nem számot adott meg!");
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.Write($"Add meg az sor számát (1-{size}): ");
+                sorinput = Console.ReadLine();
+            }
+            while (sor < 1 || sor > size && kilep == false)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"Nem adott meg 1-{size}-ig terjedő számot!!");
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.Write($"Add meg az sor számát (1-{size}): ");
+                sorinput = Console.ReadLine();
+                while (!int.TryParse(sorinput, out sor) && kilep == false)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Nem számot adott meg!");
                     Console.ForegroundColor = ConsoleColor.White;
-                    Console.Write($"Add meg a sor számát (1-{size}) ");
-                    continue;
+                    Console.Write($"Add meg az sor számát (1-{size}): ");
+                    sorinput = Console.ReadLine();
                 }
-                if (sor < 1 || sor > size && kilep == false)
-                {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine($"Nem adott meg 1-{size}-ig terjedő számot!");
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Console.Write($"Add meg a sor számát (1-{size}): ");
-                    continue;
-                }
-                if(kilep == false)
-                {
-                    return sor;
-                }
+            }
+            if (kilep == false)
+            {
+                return sor;
+            }
+            else
+            {
+                return sor;
             }
         }
 
@@ -496,33 +512,42 @@ namespace AmobaProjekt
             string oszlopinput = Console.ReadLine();
             bool kilep = false;
             int oszlop;
-            while (true)
+            if (oszlopinput == "esc" || oszlopinput == "kilepes" || oszlopinput == "vissza")
             {
-                if (oszlopinput == "esc" || oszlopinput == "kilepes" || oszlopinput == "vissza")
-                {
                     kilep = true;
                     return 999;
-                }
-                if (!int.TryParse(oszlopinput, out oszlop) && kilep == false)
+            }
+            while (!int.TryParse(oszlopinput, out oszlop) && kilep == false)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Nem számot adott meg!");
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.Write($"Add meg az oszlop számát (1-{size}): ");
+                oszlopinput = Console.ReadLine();
+            }
+            while (oszlop < 1 || oszlop > size && kilep == false)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"Nem adott meg 1-{size}-ig terjedő számot!!");
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.Write($"Add meg az oszlop számát (1-{size}): ");
+                oszlopinput = Console.ReadLine();
+                while (!int.TryParse(oszlopinput, out oszlop) && kilep == false)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Nem számot adott meg!");
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.Write($"Add meg az oszlop számát (1-{size}): ");
-                    continue;
+                    oszlopinput = Console.ReadLine();
                 }
-                if (oszlop < 1 || oszlop > size && kilep == false)
-                {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine($"Nem adott meg 1-{size}-ig terjedő számot!!");
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Console.Write($"Add meg az oszlop számát (1-{size}): ");
-                    continue;
-                }
-                if (kilep == false)
-                {
+            }
+            if (kilep == false)
+            {
                     return oszlop;
-                }
+            }
+            else
+            {
+                return oszlop;
             }
         }
 

@@ -13,7 +13,7 @@ namespace AmobaProjekt
             string jatekos1 = "X";
             string jatekos2 = "O";
             string[,] hasznaltmezok = new string[sorok, oszlopok];
-            int lepesek = 100;
+            int lepesek = sorok*oszlopok;
             bool jatekos1fordulo = true;
             string mostanijatekos = "1. Játékos";
             int currentPoint = 0;
@@ -296,6 +296,7 @@ namespace AmobaProjekt
                         hasznaltmezok[i, j] = " ";
                     }
                 }
+                lepesek = sorok * oszlopok;
                 jatekos1fordulo = true;
                 mostanijatekos = "1. Játékos";
                 int sor = 0;

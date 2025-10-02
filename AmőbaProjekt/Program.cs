@@ -67,196 +67,7 @@ namespace AmobaProjekt
                         break;
 
                     case 1: // Beállítások
-                        Console.Clear();
-                        beallitasvalaszto = 0;
-                        Console.ForegroundColor = ConsoleColor.Yellow;
-                        Console.WriteLine("*** BEÁLLÍTÁSOK ***");
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine("1. Háttérszín állítása");
-                        Console.ForegroundColor = ConsoleColor.Blue;
-                        Console.WriteLine("2. Játékmenet beállítások");
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("3. Vissza a menübe");
-                        Console.ForegroundColor = ConsoleColor.White;
-                        while (beallitasvalaszto < 1)
-                        {
-                            Console.Write("Add meg a menüpont számát: ");
-                            beallitasvalaszto = Convert.ToInt32(Console.ReadLine());
-                        }
-                        if (beallitasvalaszto == 1)
-                        {
-                            Console.Clear();
-                            Console.ForegroundColor = ConsoleColor.Yellow;
-                            Console.WriteLine("*** HÁTTÉRSZÍN ÁLLÍTÓ ***");
-                            Console.ForegroundColor = ConsoleColor.Gray;
-                            Console.WriteLine("1. Fekete");
-                            Console.ForegroundColor = ConsoleColor.Blue;
-                            Console.WriteLine("2. Kék");
-                            Console.ForegroundColor = ConsoleColor.Green;
-                            Console.WriteLine("3. Zöld");
-                            Console.ForegroundColor = ConsoleColor.Cyan;
-                            Console.WriteLine("4. Cián");
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            Console.WriteLine("5. Piros");
-                            Console.ForegroundColor = ConsoleColor.White;
-                            Console.Write("Add meg a háttérszín számát: ");
-                            while (!int.TryParse(Console.ReadLine(), out szinvalaszto))
-                            { 
-                                Console.ForegroundColor = ConsoleColor.Red;
-                                Console.WriteLine("Nem jó számot adott meg!");
-                                Console.ForegroundColor = ConsoleColor.White;
-                                Console.Write("Add meg a háttérszín számát: ");
-                            }
-                            switch (szinvalaszto)
-                            {
-                                case 1:
-                                    Console.BackgroundColor = ConsoleColor.Black;
-                                    Console.Clear();
-                                    break;
-                                case 2:
-                                    Console.BackgroundColor = ConsoleColor.DarkBlue;
-                                    Console.Clear();
-                                    break;
-                                case 3:
-                                    Console.BackgroundColor = ConsoleColor.DarkGreen;
-                                    Console.Clear();
-                                    break;
-                                case 4:
-                                    Console.BackgroundColor = ConsoleColor.DarkCyan;
-                                    Console.Clear();
-                                    break;
-                                case 5:
-                                    Console.BackgroundColor = ConsoleColor.DarkRed;
-                                    Console.Clear();
-                                    break;
-                                default:
-                                    Console.BackgroundColor = ConsoleColor.Black;
-                                    Console.Clear();
-                                    break;
-                            }
-                        }
-                        if (beallitasvalaszto == 2)
-                        {
-                            jatekopcio = 0;
-                            Console.Clear();
-                            Console.ForegroundColor = ConsoleColor.Yellow;
-                            Console.WriteLine("*** JÁTÉK BEÁLLÍTÁSOK ***");
-                            Console.ForegroundColor = ConsoleColor.Green;
-                            Console.WriteLine("1. Játéktér méretének módosítása");
-                            Console.ForegroundColor = ConsoleColor.Blue;
-                            Console.WriteLine("2. Játékosok jelöléseinek módosítása");
-                            Console.ForegroundColor = ConsoleColor.White;
-                            Console.Write("Add meg az opció számát: ");
-                            while (!int.TryParse(Console.ReadLine(), out jatekopcio))
-                            {
-                                Console.ForegroundColor = ConsoleColor.Red;
-                                Console.WriteLine("Nem jó számot adott meg!");
-                                Console.ForegroundColor = ConsoleColor.White;
-                                Console.Write("Add meg az opció számát: ");
-                            }
-                            if (jatekopcio == 1)
-                            {
-                                Console.WriteLine("A tábla mérete jelenleg 10x10, maximum 15x15-ös táblát lehet beállítani.");
-                                Console.WriteLine("Add meg a tábla méretét számát (10-15): ");
-                                while (!int.TryParse(Console.ReadLine(), out size) || size < 10 || size > 15)
-                                {
-                                    Console.ForegroundColor = ConsoleColor.Red;
-                                    Console.WriteLine("Nem jó számot adott meg!");
-                                    Console.ForegroundColor = ConsoleColor.White;
-                                    Console.Write("Add meg a tábla méretét számát (10-15): ");
-                                }
-                                sorok = size;
-                                oszlopok = size;
-                            }
-                            if (jatekopcio == 2)
-                            {
-                                Console.Clear();
-                                Console.ForegroundColor = ConsoleColor.Yellow;
-                                Console.WriteLine("*** JÁTÉKOS KARAKTER VÁLASZTÓ ***");
-                                Console.ForegroundColor = ConsoleColor.Cyan;
-                                Console.WriteLine($"A játékosok jelölései jelenleg {jatekos1} és {jatekos2}.");
-                                string jatekos1v;
-                                Console.ForegroundColor = ConsoleColor.Green;
-                                Console.Write("Add meg az 1. játékos jelölését (alapértelmezett: X): ");
-                                Console.ForegroundColor = ConsoleColor.White;
-                                jatekos1v = Console.ReadLine();
-                                while (jatekos1v == jatekos2)
-                                {
-                                    Console.ForegroundColor = ConsoleColor.Red;
-                                    Console.WriteLine("Ezt a karaktert az 2. játékos már használja! Adja meg újra!");
-                                    Console.ForegroundColor = ConsoleColor.Green;
-                                    Console.Write("Add meg az 1. játékos jelölését (alapértelmezett: X): ");
-                                    Console.ForegroundColor = ConsoleColor.White;
-                                    jatekos1v = Console.ReadLine();
-                                }
-                                while (jatekos1v != "" || jatekos1v != " ")
-                                {
-                                    if (jatekos1v.Length > 1 || jatekos1v.Length < 1)
-                                    {
-                                        Console.ForegroundColor = ConsoleColor.Red;
-                                        Console.WriteLine("Nem jól adta meg a jelölést! Adja meg újra!");
-                                        Console.ForegroundColor = ConsoleColor.Green;
-                                        Console.Write("Add meg az 1. játékos jelölését (alapértelmezett: X): ");
-                                        Console.ForegroundColor = ConsoleColor.White;
-                                        jatekos1v = Console.ReadLine();
-                                        while (jatekos1v == jatekos2)
-                                        {
-                                            Console.ForegroundColor = ConsoleColor.Red;
-                                            Console.WriteLine("Ezt a karaktert az 1. játékos már használja!");
-                                            Console.ForegroundColor = ConsoleColor.Green;
-                                            Console.Write("Add meg az 1. játékos jelölését (alapértelmezett: O): ");
-                                            Console.ForegroundColor = ConsoleColor.White;
-                                            jatekos1v = Console.ReadLine();
-                                        }
-                                    }
-                                    else
-                                    {
-                                        jatekos1 = jatekos1v;
-                                        break;
-                                    }
-                                }
-                                string jatekos2v;
-                                Console.ForegroundColor = ConsoleColor.Blue;
-                                Console.Write("Add meg az 2. játékos jelölését (alapértelmezett: O): ");
-                                Console.ForegroundColor = ConsoleColor.White;
-                                jatekos2v = Console.ReadLine();
-                                while (jatekos2v == jatekos1) 
-                                {
-                                    Console.ForegroundColor = ConsoleColor.Red;
-                                    Console.WriteLine("Ezt a karaktert az 1. játékos már használja!");
-                                    Console.ForegroundColor = ConsoleColor.Blue;
-                                    Console.Write("Add meg az 2. játékos jelölését (alapértelmezett: O): ");
-                                    Console.ForegroundColor = ConsoleColor.White;
-                                    jatekos2v = Console.ReadLine();
-                                }
-                                while (jatekos2v != "" || jatekos2v != " ")
-                                {
-                                    if (jatekos2v.Length > 1 || jatekos2v.Length < 1)
-                                    {
-                                        Console.ForegroundColor = ConsoleColor.Red;
-                                        Console.WriteLine("Nem jól adta meg a jelölést! Adja meg újra!");
-                                        Console.ForegroundColor = ConsoleColor.Blue;
-                                        Console.Write("Add meg az 2. játékos jelölését (alapértelmezett: O): ");
-                                        Console.ForegroundColor = ConsoleColor.White;
-                                        jatekos2v = Console.ReadLine();
-                                        while (jatekos2v != jatekos1v)
-                                        {
-                                            Console.ForegroundColor = ConsoleColor.Red;
-                                            Console.WriteLine("Ezt a karaktert az 1. játékos már használja!");
-                                            Console.ForegroundColor = ConsoleColor.Blue;
-                                            Console.Write("Add meg az 2. játékos jelölését (alapértelmezett: O): ");
-                                            Console.ForegroundColor = ConsoleColor.White;
-                                            jatekos2v = Console.ReadLine();
-                                        }
-                                    }
-                                    else
-                                    {
-                                        jatekos2 = jatekos2v;
-                                        break;
-                                    }
-                                }
-                            }
-                        }
+                        beallitasvalaszto = Beallitasok(ref sorok, ref oszlopok, ref jatekos1, ref jatekos2, ref szinvalaszto, ref jatekopcio, ref size);
                         break;
                     case 2: // Kilépés
                         Console.Clear();
@@ -268,6 +79,203 @@ namespace AmobaProjekt
                 }
 
             } while (currentPoint != 2);
+        }
+
+        private static int Beallitasok(ref int sorok, ref int oszlopok, ref string jatekos1, ref string jatekos2, ref int szinvalaszto, ref int jatekopcio, ref int size)
+        {
+            int beallitasvalaszto;
+            Console.Clear();
+            beallitasvalaszto = 0;
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("*** BEÁLLÍTÁSOK ***");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("1. Háttérszín állítása");
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("2. Játékmenet beállítások");
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("3. Vissza a menübe");
+            Console.ForegroundColor = ConsoleColor.White;
+            while (beallitasvalaszto < 1)
+            {
+                Console.Write("Add meg a menüpont számát: ");
+                beallitasvalaszto = Convert.ToInt32(Console.ReadLine());
+            }
+            if (beallitasvalaszto == 1)
+            {
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("*** HÁTTÉRSZÍN ÁLLÍTÓ ***");
+                Console.ForegroundColor = ConsoleColor.Gray;
+                Console.WriteLine("1. Fekete");
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.WriteLine("2. Kék");
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("3. Zöld");
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine("4. Cián");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("5. Piros");
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.Write("Add meg a háttérszín számát: ");
+                while (!int.TryParse(Console.ReadLine(), out szinvalaszto))
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Nem jó számot adott meg!");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.Write("Add meg a háttérszín számát: ");
+                }
+                switch (szinvalaszto)
+                {
+                    case 1:
+                        Console.BackgroundColor = ConsoleColor.Black;
+                        Console.Clear();
+                        break;
+                    case 2:
+                        Console.BackgroundColor = ConsoleColor.DarkBlue;
+                        Console.Clear();
+                        break;
+                    case 3:
+                        Console.BackgroundColor = ConsoleColor.DarkGreen;
+                        Console.Clear();
+                        break;
+                    case 4:
+                        Console.BackgroundColor = ConsoleColor.DarkCyan;
+                        Console.Clear();
+                        break;
+                    case 5:
+                        Console.BackgroundColor = ConsoleColor.DarkRed;
+                        Console.Clear();
+                        break;
+                    default:
+                        Console.BackgroundColor = ConsoleColor.Black;
+                        Console.Clear();
+                        break;
+                }
+            }
+            if (beallitasvalaszto == 2)
+            {
+                jatekopcio = 0;
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("*** JÁTÉK BEÁLLÍTÁSOK ***");
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("1. Játéktér méretének módosítása");
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.WriteLine("2. Játékosok jelöléseinek módosítása");
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.Write("Add meg az opció számát: ");
+                while (!int.TryParse(Console.ReadLine(), out jatekopcio))
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Nem jó számot adott meg!");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.Write("Add meg az opció számát: ");
+                }
+                if (jatekopcio == 1)
+                {
+                    Console.WriteLine($"A tábla mérete jelenleg {size}x{size}, maximum 50x50-es táblát lehet beállítani.");
+                    Console.WriteLine("Add meg a tábla méretét számát (10-50): ");
+                    while (!int.TryParse(Console.ReadLine(), out size) || size < 10 || size > 50)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Nem jó számot adott meg!");
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.Write("Add meg a tábla méretét számát (10-15): ");
+                    }
+                    sorok = size;
+                    oszlopok = size;
+                }
+                if (jatekopcio == 2)
+                {
+                    Console.Clear();
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("*** JÁTÉKOS KARAKTER VÁLASZTÓ ***");
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.WriteLine($"A játékosok jelölései jelenleg {jatekos1} és {jatekos2}.");
+                    string jatekos1v;
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.Write("Add meg az 1. játékos jelölését (alapértelmezett: X): ");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    jatekos1v = Console.ReadLine();
+                    while (jatekos1v == jatekos2)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Ezt a karaktert az 2. játékos már használja! Adja meg újra!");
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.Write("Add meg az 1. játékos jelölését (alapértelmezett: X): ");
+                        Console.ForegroundColor = ConsoleColor.White;
+                        jatekos1v = Console.ReadLine();
+                    }
+                    while (jatekos1v != "" || jatekos1v != " ")
+                    {
+                        if (jatekos1v.Length > 1 || jatekos1v.Length < 1)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("Nem jól adta meg a jelölést! Adja meg újra!");
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.Write("Add meg az 1. játékos jelölését (alapértelmezett: X): ");
+                            Console.ForegroundColor = ConsoleColor.White;
+                            jatekos1v = Console.ReadLine();
+                            while (jatekos1v == jatekos2)
+                            {
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine("Ezt a karaktert az 1. játékos már használja!");
+                                Console.ForegroundColor = ConsoleColor.Green;
+                                Console.Write("Add meg az 1. játékos jelölését (alapértelmezett: O): ");
+                                Console.ForegroundColor = ConsoleColor.White;
+                                jatekos1v = Console.ReadLine();
+                            }
+                        }
+                        else
+                        {
+                            jatekos1 = jatekos1v;
+                            break;
+                        }
+                    }
+                    string jatekos2v;
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                    Console.Write("Add meg az 2. játékos jelölését (alapértelmezett: O): ");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    jatekos2v = Console.ReadLine();
+                    while (jatekos2v == jatekos1)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Ezt a karaktert az 1. játékos már használja!");
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                        Console.Write("Add meg az 2. játékos jelölését (alapértelmezett: O): ");
+                        Console.ForegroundColor = ConsoleColor.White;
+                        jatekos2v = Console.ReadLine();
+                    }
+                    while (jatekos2v != "" || jatekos2v != " ")
+                    {
+                        if (jatekos2v.Length > 1 || jatekos2v.Length < 1)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("Nem jól adta meg a jelölést! Adja meg újra!");
+                            Console.ForegroundColor = ConsoleColor.Blue;
+                            Console.Write("Add meg az 2. játékos jelölését (alapértelmezett: O): ");
+                            Console.ForegroundColor = ConsoleColor.White;
+                            jatekos2v = Console.ReadLine();
+                            while (jatekos2v != jatekos1v)
+                            {
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine("Ezt a karaktert az 1. játékos már használja!");
+                                Console.ForegroundColor = ConsoleColor.Blue;
+                                Console.Write("Add meg az 2. játékos jelölését (alapértelmezett: O): ");
+                                Console.ForegroundColor = ConsoleColor.White;
+                                jatekos2v = Console.ReadLine();
+                            }
+                        }
+                        else
+                        {
+                            jatekos2 = jatekos2v;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            return beallitasvalaszto;
         }
 
         /// <summary>

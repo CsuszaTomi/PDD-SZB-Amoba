@@ -93,12 +93,15 @@ namespace AmobaProjekt
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("2. Játékmenet beállítások");
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("3. Vissza a menübe");
+            Console.WriteLine("Enterrel vissza a menübe");
             Console.ForegroundColor = ConsoleColor.White;
             while (beallitasvalaszto < 1)
             {
                 Console.Write("Add meg a menüpont számát: ");
-                beallitasvalaszto = Convert.ToInt32(Console.ReadLine());
+                if (!int.TryParse(Console.ReadLine(), out beallitasvalaszto))
+                {
+                    break;
+                }
             }
             if (beallitasvalaszto == 1)
             {
@@ -162,14 +165,13 @@ namespace AmobaProjekt
                 Console.WriteLine("1. Játéktér méretének módosítása");
                 Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine("2. Játékosok jelöléseinek módosítása");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Enterrel vissza a menübe");
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.Write("Add meg az opció számát: ");
-                while (!int.TryParse(Console.ReadLine(), out jatekopcio))
+                if (!int.TryParse(Console.ReadLine(), out jatekopcio))
                 {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Nem jó számot adott meg!");
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Console.Write("Add meg az opció számát: ");
+
                 }
                 if (jatekopcio == 1)
                 {

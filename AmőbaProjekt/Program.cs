@@ -173,14 +173,14 @@ namespace AmobaProjekt
                 }
                 if (jatekopcio == 1)
                 {
-                    Console.WriteLine($"A tábla mérete jelenleg {size}x{size}, maximum 50x50-es táblát lehet beállítani.");
-                    Console.WriteLine("Add meg a tábla méretét számát (10-50): ");
-                    while (!int.TryParse(Console.ReadLine(), out size) || size < 10 || size > 50)
+                    Console.WriteLine($"A tábla mérete jelenleg {size}x{size}, maximum 25x25-es táblát lehet beállítani.");
+                    Console.WriteLine("Add meg a tábla méretét számát (10-25): ");
+                    while (!int.TryParse(Console.ReadLine(), out size) || size < 10 || size > 25)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("Nem jó számot adott meg!");
                         Console.ForegroundColor = ConsoleColor.White;
-                        Console.Write("Add meg a tábla méretét számát (10-15): ");
+                        Console.Write("Add meg a tábla méretét számát (10-25): ");
                     }
                     sorok = size;
                     oszlopok = size;

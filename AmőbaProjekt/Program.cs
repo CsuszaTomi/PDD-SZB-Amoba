@@ -314,11 +314,25 @@ namespace AmobaProjekt
                 {
                     Console.Clear();
                     Tabla(sorok, oszlopok, tabla, size, jatekos1, jatekos2);
+                    Console.WriteLine(lepesek);
                     if (elejikiiras == 0)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("Kilépéshez írd be hogy esc/kilepes/vissza.");
                         elejikiiras++;
+                    }
+                    if (lepesek == 0)
+                    {
+                        Console.Clear();
+                        Tabla(sorok, oszlopok, tabla, size, jatekos1, jatekos2);
+                        Console.ForegroundColor = ConsoleColor.Magenta;
+                        Console.WriteLine("A játéknak vége mivel elfogyott a hely. Így az állás döntetlen lett!");
+                        jatek = false;
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine("Nyomd meg az entert a menübe való visszatéréshez!");
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.ReadKey();
+                        break;
                     }
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine($"Az {mostanijatekos} következik");
@@ -460,7 +474,7 @@ namespace AmobaProjekt
                         mostanijatekos = "1. Játékos";
                     }
                     lepesek--;
-                } while (jatek && lepesek > 0);
+                } while (jatek);
             }
         }
 

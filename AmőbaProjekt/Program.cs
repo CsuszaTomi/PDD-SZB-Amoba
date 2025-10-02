@@ -310,9 +310,18 @@ namespace AmobaProjekt
 
                     Console.Write($"Add meg a sor számát (1-{size}): ");
                     sor = SorEllenorzes(size) - 1;
+                    if (sor == 998)
+                    {
+                        Console.WriteLine("Break");
+                        break;
+                    }
                     Console.Write($"Add meg az oszlop számát (1-{size}): ");
                     oszlop = Oszlopellenorzes(size) - 1;
-
+                    if (oszlop == 998)
+                    {
+                        Console.WriteLine("Break");
+                        break;
+                    }
                     // Ellenőrzés
                     while (hasznaltmezok[sor, oszlop] == jatekos1 || hasznaltmezok[sor, oszlop] == jatekos2)
                     {
@@ -322,8 +331,18 @@ namespace AmobaProjekt
 
                         Console.Write($"Add meg a sor számát (1-{size}): ");
                         sor = SorEllenorzes(size) - 1;
+                        if (sor == 998)
+                        {
+                            Console.WriteLine("Break");
+                            break;
+                        }
                         Console.Write($"Add meg az oszlop számát (1-{size}): ");
                         oszlop = Oszlopellenorzes(size) - 1;
+                        if (oszlop == 998)
+                        {
+                            Console.WriteLine("Break");
+                            break;
+                        }
                     }
                     //Játékos lépése
                     if (jatekos1fordulo)
@@ -435,10 +454,17 @@ namespace AmobaProjekt
         /// <returns></returns>
         private static int SorEllenorzes(int size)
         {
+            string sorinput = Console.ReadLine();
             int sor;
+            bool kilep = false;
             while (true)
             {
-                if (!int.TryParse(Console.ReadLine(), out sor))
+                if(sorinput == "esc" || sorinput == "kilepes" || sorinput == "vissza")
+                {
+                    kilep = true;
+                    return 999;
+                }
+                if (!int.TryParse(sorinput, out sor) && kilep == false)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Nem számot adott meg!");
@@ -446,7 +472,7 @@ namespace AmobaProjekt
                     Console.Write($"Add meg a sor számát (1-{size}) ");
                     continue;
                 }
-                if (sor < 1 || sor > size)
+                if (sor < 1 || sor > size && kilep == false)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine($"Nem adott meg 1-{size}-ig terjedő számot!");
@@ -454,7 +480,10 @@ namespace AmobaProjekt
                     Console.Write($"Add meg a sor számát (1-{size}): ");
                     continue;
                 }
-                return sor;
+                if(kilep == false)
+                {
+                    return sor;
+                }
             }
         }
 
@@ -464,10 +493,17 @@ namespace AmobaProjekt
         /// <returns></returns>
         private static int Oszlopellenorzes(int size)
         {
+            string oszlopinput = Console.ReadLine();
+            bool kilep = false;
             int oszlop;
             while (true)
             {
-                if (!int.TryParse(Console.ReadLine(), out oszlop))
+                if (oszlopinput == "esc" || oszlopinput == "kilepes" || oszlopinput == "vissza")
+                {
+                    kilep = true;
+                    return 999;
+                }
+                if (!int.TryParse(oszlopinput, out oszlop) && kilep == false)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Nem számot adott meg!");
@@ -475,7 +511,7 @@ namespace AmobaProjekt
                     Console.Write($"Add meg az oszlop számát (1-{size}): ");
                     continue;
                 }
-                if (oszlop < 1 || oszlop > size)
+                if (oszlop < 1 || oszlop > size && kilep == false)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine($"Nem adott meg 1-{size}-ig terjedő számot!!");
@@ -483,7 +519,10 @@ namespace AmobaProjekt
                     Console.Write($"Add meg az oszlop számát (1-{size}): ");
                     continue;
                 }
-                return oszlop;
+                if (kilep == false)
+                {
+                    return oszlop;
+                }
             }
         }
 

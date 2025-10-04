@@ -460,10 +460,6 @@ namespace AmobaProjekt
                         }
                     }
                     //Lépésszám csökkentése
-                    if (jatek)
-                    {
-                        Tabla(sorok, oszlopok, tabla, size, jatekos1, jatekos2);
-                    }
                     if (mostanijatekos == "1. Játékos")
                     {
                         mostanijatekos = "2. Játékos";

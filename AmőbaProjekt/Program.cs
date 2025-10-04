@@ -669,21 +669,5 @@ namespace AmobaProjekt
             Console.Write("┘\n");
         }
 
-        private static void TablaMentese(string[,] tabla, int size, string fajlnev = "tabla.txt")
-        {
-            using (StreamWriter sw = new StreamWriter(fajlnev))
-            {
-                for (int sor = 0; sor < size; sor++)
-                {
-                    for (int oszlop = 0; oszlop < size; oszlop++)
-                    {
-                        sw.Write(tabla[sor, oszlop]);
-                        if (oszlop != size - 1)
-                            sw.Write(" | "); 
-                    }
-                    sw.WriteLine(); 
-                }
-            }
-        }
     }
 }

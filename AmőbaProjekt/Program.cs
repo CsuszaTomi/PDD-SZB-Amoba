@@ -179,16 +179,16 @@ namespace AmobaProjekt
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine("*** TÁBLA MÉRET ÁLLÍTÓ ***");
                     Console.ForegroundColor = ConsoleColor.DarkYellow;
-                    Console.WriteLine($"A tábla mérete jelenleg {size}x{size}, maximum 50x50-es táblát lehet beállítani.");
+                    Console.WriteLine($"A tábla mérete jelenleg {size}x{size}, maximum 20x20-es táblát lehet beállítani.");
                     Console.ForegroundColor = ConsoleColor.Green;
-                    Console.Write("Add meg a tábla méretét(5-50): ");
+                    Console.Write("Add meg a tábla méretét(5-20): ");
                     Console.ForegroundColor = ConsoleColor.White;
-                    while (!int.TryParse(Console.ReadLine(), out size) || size < 5 || size > 50)
+                    while (!int.TryParse(Console.ReadLine(), out size) || size < 5 || size > 20)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("Nem jó számot adott meg!");
                         Console.ForegroundColor = ConsoleColor.White;
-                        Console.Write("Add meg a tábla méretét(5-50): ");
+                        Console.Write("Add meg a tábla méretét(5-20): ");
                     }
                     sorok = size;
                     oszlopok = size;
@@ -336,17 +336,16 @@ namespace AmobaProjekt
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine($"Az {mostanijatekos} következik");
                     Console.ForegroundColor = ConsoleColor.White;
-
-                    Console.Write($"Add meg a sor számát (1-{size}): ");
-                    sor = SorEllenorzes(size) - 1;
-                    if (sor == 998)
+                    Console.Write($"Add meg az oszlop számát (1-{size}): ");
+                    oszlop = Oszlopellenorzes(size) - 1;
+                    if (oszlop == 998)
                     {
                         Console.WriteLine("Break");
                         break;
                     }
-                    Console.Write($"Add meg az oszlop számát (1-{size}): ");
-                    oszlop = Oszlopellenorzes(size) - 1;
-                    if (oszlop == 998)
+                    Console.Write($"Add meg a sor számát (1-{size}): ");
+                    sor = SorEllenorzes(size) - 1;
+                    if (sor == 998)
                     {
                         Console.WriteLine("Break");
                         break;
@@ -357,17 +356,16 @@ namespace AmobaProjekt
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("Erre a mezőre már lépett valaki!");
                         Console.ForegroundColor = ConsoleColor.White;
-
-                        Console.Write($"Add meg a sor számát (1-{size}): ");
-                        sor = SorEllenorzes(size) - 1;
-                        if (sor == 998)
+                        Console.Write($"Add meg az oszlop számát (1-{size}): ");
+                        oszlop = Oszlopellenorzes(size) - 1;
+                        if (oszlop == 998)
                         {
                             Console.WriteLine("Break");
                             break;
                         }
-                        Console.Write($"Add meg az oszlop számát (1-{size}): ");
-                        oszlop = Oszlopellenorzes(size) - 1;
-                        if (oszlop == 998)
+                        Console.Write($"Add meg a sor számát (1-{size}): ");
+                        sor = SorEllenorzes(size) - 1;
+                        if (sor == 998)
                         {
                             Console.WriteLine("Break");
                             break;

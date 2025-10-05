@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace AmobaProjekt
 {
@@ -38,6 +39,7 @@ namespace AmobaProjekt
                 bool selected = false;
                 do
                 {
+                    Console.Clear();
                     Menu(currentPoint);
                     switch (Console.ReadKey(true).Key)
                     {
@@ -67,6 +69,7 @@ namespace AmobaProjekt
                         break;
 
                     case 1: // Beállítások
+                        Console.Clear();
                         beallitasvalaszto = Beallitasok(ref sorok, ref oszlopok, ref jatekos1, ref jatekos2, ref szinvalaszto, ref jatekopcio, ref size);
                         break;
                     case 2: // Kilépés
@@ -611,7 +614,7 @@ namespace AmobaProjekt
         private static void Tabla(int sorok, int oszlopok, string[,] tabla, int size, string jatekos1, string jatekos2)
         {
             // Oszlop szamok kiirasa
-            Console.Write("   ");
+            Console.Write("  ");
             for (int i = 0; i < size; i++)
             {
                 Console.Write($" {i + 1,2} ");
@@ -667,5 +670,6 @@ namespace AmobaProjekt
             }
             Console.Write("┘\n");
         }
+
     }
 }

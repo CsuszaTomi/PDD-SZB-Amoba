@@ -8,6 +8,8 @@ namespace AmobaProjekt
         static void Main(string[] args)
         {
             // Alapadatok
+            Console.SetWindowSize(120, 50);
+            Console.SetBufferSize(120, 1000);
             int sorok = 10;
             int oszlopok = 10;
             string[,] tabla = new string[sorok, oszlopok];

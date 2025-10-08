@@ -8,6 +8,8 @@ namespace AmobaProjekt
         static void Main(string[] args)
         {
             // Alapadatok
+            Console.SetWindowSize(120, 50);
+            Console.SetBufferSize(120, 1000);
             int sorok = 10;
             int oszlopok = 10;
             string[,] tabla = new string[sorok, oszlopok];
@@ -297,6 +299,7 @@ namespace AmobaProjekt
         {
             if (jatek)
             {
+                Console.Clear();
                 tabla = new string[sorok, oszlopok];
                 hasznaltmezok = new string[sorok, oszlopok];
                 for (int i = 0; i < sorok; i++)
